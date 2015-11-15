@@ -1,0 +1,112 @@
+<!--
+
+    Licensed to Apereo under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Apereo licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jasig.parent</groupId>
+    <artifactId>jasig-parent</artifactId>
+    <version>40</version>
+  </parent>
+
+  <groupId>org.apereo.application</groupId>
+  <artifactId>ImageQuiz</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>ImageQuiz</name>
+  <url>https://github.com/Jasig/ImageQuiz</url>
+
+  <scm>
+    <connection>scm:git:git@github.com:Jasig/ImageQuiz.git</connection>
+    <developerConnection>scm:git:git@github.com:Jasig/ImageQuiz.git</developerConnection>
+    <url>https://github.com/Jasig/ImageQuiz</url>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jasig-license-lookup-url>license-mappings.xml</jasig-license-lookup-url>
+    <jasig-short-license-url>short-license-header.txt</jasig-short-license-url>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.swinglabs</groupId>
+      <artifactId>swing-layout</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.netbeans.external</groupId>
+      <artifactId>AbsoluteLayout</artifactId>
+      <version>RELEASE74</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>scripteditor.MainForm</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+<plugin>
+  <groupId>sh.tak.appbundler</groupId>
+  <artifactId>appbundle-maven-plugin</artifactId>
+  <version>1.0.4</version>
+  <configuration>
+    <mainClass>scripteditor.MainForm</mainClass>
+  </configuration>
+  <executions>
+    <execution>
+      <phase>package</phase>
+      <goals>
+        <goal>bundle</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <!--These are needed for Swing/Netbeans -->
+    <repository>
+      <id>maven2-repository.netbeans.maven2</id>
+      <name>Netbeans Maven Repository</name>
+      <url>http://bits.netbeans.org/maven2/</url>
+      <layout>default</layout>
+    </repository> 
+  </repositories>
+</project>
