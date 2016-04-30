@@ -29,10 +29,10 @@
   </parent>
 
   <groupId>org.apereo.application</groupId>
-  <artifactId>ImageQuiz</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>VL-HERPS</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
-  <name>ImageQuiz</name>
+  <name>VL-HERPS</name>
   <url>https://github.com/Jasig/ImageQuiz</url>
 
   <scm>
@@ -87,6 +87,8 @@
   <version>1.0.4</version>
   <configuration>
     <mainClass>scripteditor.MainForm</mainClass>
+    <jrePath>/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk</jrePath>
+    <iconFile>herps.icns</iconFile>
   </configuration>
   <executions>
     <execution>
@@ -107,6 +109,6 @@
       <name>Netbeans Maven Repository</name>
       <url>http://bits.netbeans.org/maven2/</url>
       <layout>default</layout>
-    </repository> 
+    </repository>
   </repositories>
 </project>

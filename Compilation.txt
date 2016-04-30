@@ -1,0 +1,53 @@
+
+Compilation Instructions
+
+#navigate to root directory
+cd ImageQuiz
+
+#create app bundle in /target
+mvn package appbundle:bundle
+
+
+#rename application directory from VL-HERPS-1.0 to VL-HERPS
+
+#copy and past app icon from VL-HERPS bundle 'Get Info' to VL-HERPS directory 'Get Info'
+
+#copy app resources (database directories, etc.) to VL-HERPS directory
+
+#chmod +x the spawn file (to allow external help file loading)
+chmod +x target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/Home/jre/lib/jspawnhelper
+
+#delete JRE files and directories that cause codesign conflicts
+rm target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/Home/jre/lib/libjfxmedia.dylib
+rm -rf target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/Home/lib/missioncontrol
+rm -rf target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/Home/man/ja
+rm -rf target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/Home/man/ja_JP.UTF-8
+
+#identify all nested jre files in text for batch codesigning and write to bash file
+find target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE -type f > codesign_jre.sh
+
+#add prefix to each line
+sed -i -e 's#^#codesign -f -s "Developer ID Application: ADD TEXT HERE" #' codesign_jre.sh
+
+#add bash prefix to file
+sed -i "1i #!/bin/bash " codesign_jre.sh
+
+#change script permissions to execute
+chmod +x codesign_jre.sh
+
+#execute bash script to batch codesign JRE files
+./codesign_jre.sh
+
+#codesign the CodeResources directory
+codesign -f -s "Developer ID Application: ADD TEXT HERE" target/VL-HERPS/VL-HERPS.app/Contents/PlugIns/JRE/Contents/_CodeSignature/CodeResources/
+
+#codesign the app to complete codesigning
+codesign -f -s "Developer ID Application: ADD TEXT HERE" target/VL-HERPS/VL-HERPS.app
+
+#verify that code signing was successful
+codesign --verify --deep --verbose=2 target/VL-HERPS/VL-HERPS.app
+
+
+#create tarball for distribution
+cd target
+tar -czvf VL-HERPS.tar.gz VL-HERPS
