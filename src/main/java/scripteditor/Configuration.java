@@ -38,10 +38,11 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Administrator
+ * Modifications by ztesler, 04-2016
  */
 public class Configuration {
 
-    static int OS = 1; // Windows OS = 0 and MAC OS = 1
+    static String OSType = "MAC";      //"MAC"  "PC"
     static String mDBPath = "DBPath.txt";
     public static String DataBaseName() {
         return "database.csv";
@@ -149,16 +150,15 @@ public class Configuration {
 
         return diskfile;
     }
+
     public static String ApplicationPath() {
         File myFile = new File("");
         try {
-            //return myFile.getCanonicalPath();
-
-            //Add Contents to path to account for OSX .app file structure
-            //return myFile.getCanonicalPath() + "/Contents";
-
-            //Use /.. path to reference resource files/subfolders outside of .app bundle
-            return myFile.getCanonicalPath() + "/..";
+            if (OSType.compareToIgnoreCase("MAC") == 0) {
+                return myFile.getCanonicalPath() + "/..";
+            } else {
+                return myFile.getCanonicalPath() + "/";
+            }
         } catch (IOException ex) {
             Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
             return "";
@@ -186,12 +186,8 @@ public class Configuration {
 
     }
 
-   /* public static String ApplicationName() {
-        return "WPSEUS-LTD";
-    }*/
 
      public static String ApplicationName() {
-         //return "VL-APR";
          return "VL-HERPS";
     }
 

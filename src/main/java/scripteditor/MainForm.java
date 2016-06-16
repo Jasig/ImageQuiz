@@ -191,7 +191,7 @@ public class MainForm extends javax.swing.JFrame {
         ///  Set the main help Popup from user file if needing to display
         FileReader myReader;
       //  String path = Configuration.UserPath();//getApplicationPath(false);
-        String path = Configuration.ApplicationPath();//getApplicationPath(false);
+        String path = Configuration.ApplicationPath(); //updated by ztesler, 04-2016
         try{
             myReader = new FileReader(path + "/UserFiles/" + mUserName + ".csv");
             BufferedReader inputfile = new BufferedReader(myReader);
@@ -969,7 +969,7 @@ public class MainForm extends javax.swing.JFrame {
 //    }
 
     private void getHelp() {
-        String path = Configuration.ApplicationPath(); //getApplicationPath(true);
+        String path = Configuration.ApplicationPath();  //updated ztesler, 04-2016
          boolean exists = (new File(path + "/HelpFiles/taxa.pdf")).exists();
 
         if(!exists){
@@ -1335,7 +1335,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btStudy;
     private javax.swing.JButton btTaxaSelect;
     private javax.swing.JButton btTest;
-    private javax.swing.JMenuItem introMenuItem;
+    //private javax.swing.JMenuItem introMenuItem;  //commented ztesler 04-2016
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1412,7 +1412,7 @@ public class MainForm extends javax.swing.JFrame {
         mnuHelp = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        introMenuItem = new javax.swing.JMenuItem();
+        //introMenuItem = new javax.swing.JMenuItem();  //commented ztesler 04-2016
         tutorialMenuItem = new javax.swing.JMenuItem();
         openingScreen = new javax.swing.JMenuItem();
 
@@ -2008,7 +2008,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         mnuHelp.add(jMenuItem2);
 
-        introMenuItem.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
+        /*introMenuItem.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
         introMenuItem.setText("The Image Quiz Family of Programs");
         introMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -2029,7 +2029,7 @@ public class MainForm extends javax.swing.JFrame {
             public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
             }
         });
-        mnuHelp.add(introMenuItem);
+        mnuHelp.add(introMenuItem);*/  //commented ztesler 04-2016
 
         tutorialMenuItem.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
         tutorialMenuItem.setText("Tutorial");
@@ -2310,7 +2310,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void LaunchPDF(String fileName){
 
-        String path = Configuration.ApplicationPath(); //getApplicationPath(true);
+        String path = Configuration.ApplicationPath();   //updated ztesler, 04-2016
         boolean exists = (new File(path + "/HelpFiles/" + fileName)).exists();
 
         if (!exists) {
@@ -2320,7 +2320,7 @@ public class MainForm extends javax.swing.JFrame {
 
         try {
              //Utilities.OpenExternalFile(Configuration.ApplicationPath()+"/HelpFiles/"+fileName);
-             Utilities.OpenExternalFile(path+"/HelpFiles/"+fileName);
+             Utilities.OpenExternalFile(path+"/HelpFiles/"+fileName);  //updated ztesler, 04-2016
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -2361,7 +2361,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void getMainHelp() {
-        String path = Configuration.ApplicationPath(); //getApplicationPath(true);
+        String path = Configuration.ApplicationPath();  //updated ztesler, 04-2016
 
         boolean exists = (new File(path + "/HelpFiles/HelpFiles.html")).exists();
         if (!exists) {
@@ -2380,7 +2380,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
      private void openFiles(String filename){
-         String path = Configuration.ApplicationPath(); //getApplicationPath(true);
+         String path = Configuration.ApplicationPath();  //updated ztesler, 04-2016
 
          boolean exists = (new File(path + "/HelpFiles/" + filename)).exists();
          if (!exists) {
@@ -2650,10 +2650,10 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          dlgCut.setVisible(true);
 }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-private void introMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introMenuItemActionPerformed
+/*private void introMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introMenuItemActionPerformed
 // TODO add your handling code here:
     LaunchPDF("Intro.pdf");
-}//GEN-LAST:event_introMenuItemActionPerformed
+}*/  //commented ztesler 04-2016     //GEN-LAST:event_introMenuItemActionPerformed
 
 private void tutorialMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialMenuItemActionPerformed
 // TODO add your handling code here:
