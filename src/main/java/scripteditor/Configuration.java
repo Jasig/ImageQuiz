@@ -38,10 +38,11 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Administrator
+ * Modifications by ztesler, 04-2016
  */
 public class Configuration {
-    
-    static int OS = 1; // Windows OS = 0 and MAC OS = 1
+
+    static String OSType = "MAC";      //"MAC"  "PC"
     static String mDBPath = "DBPath.txt";
     public static String DataBaseName() {
         return "database.csv";
@@ -96,7 +97,7 @@ public class Configuration {
         else
             return line;
     }
-    
+
     private static BufferedReader getReader(String path){
         FileReader inFile = null;
         //String currentDirectory = Configuration.ApplicationPath();
@@ -111,7 +112,7 @@ public class Configuration {
             return null;
         }
         return new BufferedReader(inFile);
-        
+
     }
     public static void setDatabaseFolderPath(String path_to_db){
         PrintWriter pw = getPrintWriter(ApplicationPath() + "\\" + mDBPath);
@@ -122,7 +123,7 @@ public class Configuration {
         } catch (Exception e) {
             String err = e.getMessage();
         }
-       
+
     }
 
     private static PrintWriter getPrintWriter(String filename) {
@@ -149,10 +150,15 @@ public class Configuration {
 
         return diskfile;
     }
+
     public static String ApplicationPath() {
         File myFile = new File("");
         try {
-            return myFile.getCanonicalPath();
+            if (OSType.compareToIgnoreCase("MAC") == 0) {
+                return myFile.getCanonicalPath() + "/..";
+            } else {
+                return myFile.getCanonicalPath() + "/";
+            }
         } catch (IOException ex) {
             Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
             return "";
@@ -161,7 +167,7 @@ public class Configuration {
 
     public static void CreateGradesFolder() {
        // String path = UserPath() + "Grades/";
-        String path = ApplicationPath() + "Grades/";//commented by preethy on 16-03-2012
+       String path = ApplicationPath() + "/Grades/";
          boolean success = (new File(path)).mkdirs();
     }
 
@@ -177,15 +183,12 @@ public class Configuration {
        // }
        // else
         //    return "OS not found";
-       
+
     }
 
-   /* public static String ApplicationName() {
-        return "WPSEUS-LTD";
-    }*/
-    
+
      public static String ApplicationName() {
-        return "VL-APR";
+         return "VL-HERPS";
     }
 
     // Tell program how many user records to hold before deleteing old records
@@ -194,5 +197,3 @@ public class Configuration {
         return 1000;
     }
 }
-
-

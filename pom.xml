@@ -28,11 +28,12 @@
     <version>40</version>
   </parent>
 
+  <!-- updated ztesler, 04-2016 -->
   <groupId>org.apereo.application</groupId>
-  <artifactId>ImageQuiz</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>VL-HERPS</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
-  <name>ImageQuiz</name>
+  <name>VL-HERPS</name>
   <url>https://github.com/Jasig/ImageQuiz</url>
 
   <scm>
@@ -81,24 +82,55 @@
           </archive>
         </configuration>
       </plugin>
-<plugin>
-  <groupId>sh.tak.appbundler</groupId>
-  <artifactId>appbundle-maven-plugin</artifactId>
-  <version>1.0.4</version>
-  <configuration>
-    <mainClass>scripteditor.MainForm</mainClass>
-  </configuration>
-  <executions>
-    <execution>
-      <phase>package</phase>
-      <goals>
-        <goal>bundle</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
+
+      <!-- updated ztesler, 04-2016 -->
+        <plugin>
+          <groupId>com.jolira</groupId>
+          <artifactId>onejar-maven-plugin</artifactId>
+          <version>1.4.4</version>
+          <executions>
+              <execution>
+                  <configuration>
+                      <mainClass>scripteditor.MainForm</mainClass>
+                      <onejarVersion>0.97</onejarVersion>
+                      <attachToBuild>true</attachToBuild>
+                  </configuration>
+                  <goals>
+                      <goal>one-jar</goal>
+                  </goals>
+              </execution>
+          </executions>
+        </plugin>
+
+        <!-- updated ztesler, 04-2016 -->
+        <plugin>
+          <groupId>sh.tak.appbundler</groupId>
+          <artifactId>appbundle-maven-plugin</artifactId>
+          <version>1.0.4</version>
+          <configuration>
+            <mainClass>scripteditor.MainForm</mainClass>
+            <jrePath>/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk</jrePath>
+            <iconFile>herps.icns</iconFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>none</phase>
+              <goals>
+                <goal>bundle</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
     </plugins>
   </build>
+
+  <!-- updated ztesler, 04-2016 -->
+  <pluginRepositories>
+      <pluginRepository>
+          <id>onejar-maven-plugin.googlecode.com</id>
+          <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+      </pluginRepository>
+  </pluginRepositories>
 
   <repositories>
     <!--These are needed for Swing/Netbeans -->
@@ -107,6 +139,6 @@
       <name>Netbeans Maven Repository</name>
       <url>http://bits.netbeans.org/maven2/</url>
       <layout>default</layout>
-    </repository> 
+    </repository>
   </repositories>
 </project>

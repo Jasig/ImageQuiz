@@ -30,6 +30,7 @@ import java.io.IOException;
 /**
  *
  * @author bpurcell
+ * Modifications by ztesler, 04-2016
  */
 public class Utilities {
 
@@ -38,9 +39,9 @@ public class Utilities {
     public static void OpenExternalFile(String path) throws IOException {
         String cmd = "";
         if (OSType.compareToIgnoreCase("MAC") == 0) {
-            cmd = "open ".concat(path);
+            cmd = "open " + path + "";
         } else {
-            cmd = "cmd /c start ".concat(path);
+            cmd = "cmd /c start \"\" \"" + path + "\"";
         }
 
         if (new File(path).exists() == false) {
