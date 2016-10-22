@@ -43,17 +43,17 @@ public class dlgSessionCommand extends javax.swing.JDialog {
         Image image=null;
         try {
            image=ImageIO.read(new File(Configuration.ApplicationPath() + "/Graphics/icon.jpg"));
-          // image=ImageIO.read(new File(Configuration.UserPath() + "/Graphics/icon.jpg")); 
+          // image=ImageIO.read(new File(Configuration.UserPath() + "/Graphics/icon.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(dlgSessionCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         setIconImage(image);
         //this.requestFocusInWindow();
         jButton1.requestFocus();
-        
-        
+
+
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -180,14 +180,15 @@ public class dlgSessionCommand extends javax.swing.JDialog {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
 
-        int res;
-        res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
+        int res = Utilities.ConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?");
+		//int res;
+        //res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
         if(res == JOptionPane.YES_OPTION){
              response = 2; // Quit
                this.setVisible(false);
-               
+
         }
-       
+
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -202,35 +203,36 @@ public class dlgSessionCommand extends javax.swing.JDialog {
 
 private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 // TODO add your handling code here:
-    int res;
-        res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
-        if(res == JOptionPane.YES_OPTION){
-             response = 2; // Quit
-               this.setVisible(false);
-               
-        }
-    
+    int res = Utilities.ConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?");
+    //int res;
+    //res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
+    if(res == JOptionPane.YES_OPTION){
+         response = 2; // Quit
+           this.setVisible(false);
+
+    }
+
 }//GEN-LAST:event_formWindowClosing
 
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 // TODO add your handling code here:
-   
-   
+
+
 }//GEN-LAST:event_formKeyPressed
-    
+
     public void setText(String text){
         jTextArea1.setText(text);
-        
+
     }
-    
+
     public int getResponse(){
         return response;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     /**
      * @param args the command line arguments
      */
@@ -241,7 +243,7 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
      //       }
      //   });
    // }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -249,5 +251,5 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-    
+
 }

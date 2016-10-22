@@ -27,21 +27,31 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.*; //added ztesler
+import java.awt.*; //added ztesler
+
 /**
  *
  * @author bpurcell
- * Modifications by ztesler, 04-2016
+ * Modifications by ztesler, 08-2016
  */
 public class Utilities {
 
-    static String OSType = "MAC";      //"MAC"  "PC"
+    //static String OSType = "MAC";      //"MAC"  "PC"  commented ztesler
+
+    //added ztesler
+    public static boolean IsWindows() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return os.contains("win");
+    }
 
     public static void OpenExternalFile(String path) throws IOException {
-        String cmd = "";
-        if (OSType.compareToIgnoreCase("MAC") == 0) {
-            cmd = "open " + path + "";
+        String cmd[];
+        //if (OSType.compareToIgnoreCase("MAC") == 0) { //commented ztesler
+        if(!IsWindows()) { //added ztesler
+            cmd = new String[] {"open", path};
         } else {
-            cmd = "cmd /c start \"\" \"" + path + "\"";
+            cmd = new String[] {"cmd", "/c", "start \"\" \"" + path + "\""};
         }
 
         if (new File(path).exists() == false) {
@@ -52,4 +62,20 @@ public class Utilities {
         Runtime.getRuntime().exec(cmd);
 
     }
+
+    //added ztesler
+    public static void MessageDialog(Component component, String message) {
+        ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
+        String appDisplayName = ConfigFileReader.getProjectName();
+
+        JOptionPane.showMessageDialog(component, message, appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
+    }
+
+    //added ztesler
+    public static int ConfirmDialog(Component component, String message, String title) {
+        ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
+
+        return JOptionPane.showConfirmDialog(component, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, dialogIcon);
+    }
+
 }

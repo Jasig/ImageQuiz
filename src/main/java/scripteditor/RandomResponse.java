@@ -34,7 +34,7 @@ import java.util.Random;
  */
 public class RandomResponse {
 
-    
+
     public static void ShowPositiveResponse(Component mParentForm) {
         Random generator = new Random();
         String msg = "";
@@ -67,7 +67,8 @@ public class RandomResponse {
                 msg = "Excellent!";
                 break;
         }
-        JOptionPane.showMessageDialog(mParentForm, msg);
+        Utilities.MessageDialog(mParentForm, msg);
+        //JOptionPane.showMessageDialog(mParentForm, msg);
     }
 
 }

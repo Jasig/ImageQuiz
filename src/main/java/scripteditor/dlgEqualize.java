@@ -29,23 +29,23 @@ package scripteditor;
  * @author  Ben
  */
 public class dlgEqualize extends javax.swing.JDialog {
-    
+
     int mMax;
     int mPsize = -1;
-    
-    
+
+
     /** Creates new form dlgEqualize */
     public dlgEqualize() {
         initComponents();
-     
+
     }
-    
+
     public void setMax(int max){
         mMax = max;
         this.jLabel2.setText("The maximum number that can be entered is " + String.valueOf(mMax));
     }
-    
-    
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -135,32 +135,33 @@ public class dlgEqualize extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
+
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
        String temp = jTextField1.getText();
        mPsize = Integer.parseInt(temp);
        if(mPsize > mMax){
-           javax.swing.JOptionPane.showMessageDialog(this, "The value entered is over the max allowed.");
+           Utilities.MessageDialog(this, "The value entered is over the max allowed.");
+           //javax.swing.JOptionPane.showMessageDialog(this, "The value entered is over the max allowed.");
            return;
        }
-       
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseReleased
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
         this.setVisible(false);
     }//GEN-LAST:event_jButton2MouseReleased
-    
+
     public int getPsize(){
         return mPsize;
     }
     /**
      * @param args the command line arguments
      */
-   
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -169,5 +170,5 @@ public class dlgEqualize extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    
+
 }

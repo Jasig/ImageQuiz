@@ -38,11 +38,11 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Administrator
- * Modifications by ztesler, 04-2016
+ * Modifications by ztesler, 08-2016
  */
 public class Configuration {
 
-    static String OSType = "MAC";      //"MAC"  "PC"
+    //static String OSType = "MAC";      //"MAC"  "PC" commented ztesler
     static String mDBPath = "DBPath.txt";
     public static String DataBaseName() {
         return "database.csv";
@@ -154,7 +154,8 @@ public class Configuration {
     public static String ApplicationPath() {
         File myFile = new File("");
         try {
-            if (OSType.compareToIgnoreCase("MAC") == 0) {
+            if(!Utilities.IsWindows()) { //added ztesler
+            //if (OSType.compareToIgnoreCase("MAC") == 0) {
                 return myFile.getCanonicalPath() + "/..";
             } else {
                 return myFile.getCanonicalPath() + "/";
@@ -171,7 +172,8 @@ public class Configuration {
          boolean success = (new File(path)).mkdirs();
     }
 
-    public static String UserPath() {
+    //commented 8/2016 ztesler
+    /*public static String UserPath() {
         //if(OS == 0){
          JFileChooser fr = new JFileChooser();
          javax.swing.filechooser.FileSystemView fw = fr.getFileSystemView();
@@ -184,12 +186,12 @@ public class Configuration {
        // else
         //    return "OS not found";
 
-    }
+    }*/
 
-
-     public static String ApplicationName() {
-         return "VL-HERPS";
-    }
+    //commented 8/2016 ztesler
+    /*public static String ApplicationName() {
+         return "Visual Learning";
+    }*/
 
     // Tell program how many user records to hold before deleteing old records
     // View Progress Records

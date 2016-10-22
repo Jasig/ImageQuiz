@@ -38,17 +38,17 @@ public class HelpPopup extends javax.swing.JDialog {
     private String mName;
     private String mFirstLine;
     private ActionListener myListener;
-   
+
     /** Creates new form HelpPopup */
     public HelpPopup(String name, String firstLine, ActionListener al) {
         mName = name;
         mFirstLine = firstLine;
         myListener = al;
         initComponents();
-        addEscapeListener(this);//Added by preethy 
-//       
+        addEscapeListener(this);//Added by preethy
+//
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -111,7 +111,6 @@ public class HelpPopup extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Visual Learning-HERPS of the Southeast (VL-HERPS) is a visual learning tool that \nwill help you learn HERP recognition. It is not a key, but a visual training \nprogram that functions something like a field herpetology course. It is not a \nsubstitute for field experience, but it makes your time in the field much more \nproductive.\n\nAs a new user you should start by working through the Tutorial. The Tutorial will \nfamiliarize you with basic program functions such as Scripts, Selecting Taxa, \nTaking a Quiz, and Taking a Test.");
         jScrollPane1.setViewportView(jTextArea1);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
@@ -164,11 +163,11 @@ public class HelpPopup extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
- 
+
         this.setVisible(false);
-        
+
          myListener.actionPerformed(new ActionEvent(this, 1, "Tutorial"));
-        
+
          //this.dispose();
     }//GEN-LAST:event_jLabel3MouseReleased
 
@@ -179,17 +178,17 @@ public class HelpPopup extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel3MouseExited
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       
+
          mFirstLine = mFirstLine.substring(0, mFirstLine.length()-1);
-         
-        if(!chkShowOnStartUp.isSelected()){  
+
+        if(!chkShowOnStartUp.isSelected()){
              mFirstLine = mFirstLine + "0";
         }
         else
              mFirstLine = mFirstLine + "1";
-            
+
             FileWriter myFileWriter = null;
-            
+
           //  String path = Configuration.UserPath();
             String path = Configuration.ApplicationPath();
             String filename = path + "/UserFiles/" + mName + ".csv";
@@ -197,16 +196,16 @@ public class HelpPopup extends javax.swing.JDialog {
             try{
                 myFileWriter = new FileWriter(filename);
             } catch(IOException ioe){
-               
+
             }
-            
+
             PrintWriter diskfile = new PrintWriter(myFileWriter);
             diskfile.println(mFirstLine);// 1 is a flag for the help Popup
-            
-            diskfile.close();
-           
 
-        
+            diskfile.close();
+
+
+
     }//GEN-LAST:event_formWindowClosing
 
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
@@ -221,21 +220,23 @@ public class HelpPopup extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setTitle(ConfigFileReader.getProjectName());
+        jTextArea1.setText(ConfigFileReader.getWelcomeText());
+
     }//GEN-LAST:event_formWindowOpened
-    
-    public static void addEscapeListener(final JDialog dialog) { 
-    ActionListener escListener = new ActionListener() { 
-        @Override       
-        public void actionPerformed(ActionEvent e) { 
+
+    public static void addEscapeListener(final JDialog dialog) {
+    ActionListener escListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
           // esc=true;
-            dialog.setVisible(false);        }    }; 
+            dialog.setVisible(false);        }    };
     dialog.getRootPane().registerKeyboardAction(escListener,KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),JComponent.WHEN_IN_FOCUSED_WINDOW);
 }
     /**
      * @param args the command line arguments
      */
-   
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chkShowOnStartUp;
     private javax.swing.JLabel jLabel3;
@@ -243,5 +244,5 @@ public class HelpPopup extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-    
+
 }

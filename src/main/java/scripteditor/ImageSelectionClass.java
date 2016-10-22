@@ -37,7 +37,7 @@ import java.awt.event.*;
 
 
 public class ImageSelectionClass extends javax.swing.JFrame {
-     
+
     private String mTaxaLevel; // The Taxonomic Level eg. Family Genus or Species
     private String[] mFileNames; // The File names of the images to view
     private DataBaseDriver db;
@@ -50,8 +50,8 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     private ArrayList<String> myArray = new ArrayList<String>();
     private boolean SSave = false;
     //private boolean useSize = false;
-   
-    
+
+
     /** Creates new form ImageSelectionClass */
     public ImageSelectionClass(String taxaLevel, String[] filenames, ActionListener al, JFrame main, int width, int height, int lx, int ly, DataBaseDriver db_driver) {
         initComponents();
@@ -59,14 +59,14 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         //GraphicsDevice gd = this.getGraphicsConfiguration().getDevice();
         //this.setSize(new Dimension(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight()));
         //this.setLocationRelativeTo(null);
-        
+
         //if(height == -1){
             this.setExtendedState(MAXIMIZED_BOTH);
        // }
        // else{
-            
+
        //     this.setLocation(lx, ly);
-       //     this.setSize(width, height); 
+       //     this.setSize(width, height);
        //     this.setExtendedState(NORMAL);
        // }
 
@@ -89,10 +89,10 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         // Add Action Listner here to Image Viewer
 
         this.setVisible(true);
-       
-        
+
+
     }
-      
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -362,16 +362,17 @@ public class ImageSelectionClass extends javax.swing.JFrame {
 // This will set images according to the user defined settings!
 
         if (db.DataBaseExists() == false) {
-            JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] tempArray = new String[myArray.size()];
-        for(int i = 0; i < myArray.size(); i++){   
+        for(int i = 0; i < myArray.size(); i++){
             tempArray[i] = myArray.get(i).toString();
         }
         mFileNames = tempArray;
-        
-        
+
+
     ImageCountClass myQtys = new ImageCountClass(mFileNames, mTaxaLevel, db);
     myQtys.setLocationRelativeTo(this);
     myQtys.setModal(true);
@@ -385,13 +386,13 @@ public class ImageSelectionClass extends javax.swing.JFrame {
             }
         }
         jList1.setListData(myArray.toArray());
-    
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5MouseReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         mMain.setVisible(true);
-        
+
       /*  if(this.getExtendedState() == super.MAXIMIZED_BOTH){
             mMain.imageselectionHeight = -1;
             mMain.imageselectionWidth = -1;
@@ -404,7 +405,7 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         mMain.imageselectionXlocation = this.getLocation().x;
         mMain.imageselectionYlocation = this.getLocation().y;
         }*/
-        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass")); 
+        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass"));
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -421,7 +422,7 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     }//GEN-LAST:event_listFamilyKeyPressed
 
     private void listFamilyPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_listFamilyPropertyChange
-      
+
     }//GEN-LAST:event_listFamilyPropertyChange
 
     private void listSpeciesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listSpeciesMouseReleased
@@ -452,9 +453,9 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     }//GEN-LAST:event_thumbnailViewerMouseReleased
 
     private void jButton7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseReleased
-   
+
          // Build Header!!
-       
+
         String header = listFamily.getSelectedItem();
         if(listGenus.getSelectedItem() != null && mTaxaLevel.compareTo("Common Name") != 0  ){
             header = header + " | " + listGenus.getSelectedItem();
@@ -462,20 +463,20 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         if(listSpecies.getSelectedItem() != null){
             header = header + " | " + listSpecies.getSelectedItem();
         }
-        
+
         //int[] indexes =  thumbnailViewer.getSelectedIndices();
-      
-       
-            mapFilenames();   
+
+
+            mapFilenames();
         for(int i = 0; i < mMappedFileNames.length; i++){
             if(!ImageExistInList(header + " | " + mMappedFileNames[i])){
-                myArray.add(header + " | " + mMappedFileNames[i]);    
+                myArray.add(header + " | " + mMappedFileNames[i]);
             }
         }
         jList1.setListData(myArray.toArray());
         thumbnailViewer.clearSelection();
-        
-               
+
+
     }//GEN-LAST:event_jButton7MouseReleased
 
     private void thumbnailViewerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thumbnailViewerMouseClicked
@@ -494,7 +495,7 @@ public class ImageSelectionClass extends javax.swing.JFrame {
 
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
         Object[] indexes = jList1.getSelectedValues();//listFileNames.getSelectedIndexes();
-       
+
         for(int i=0; i < indexes.length; i++){
             myArray.remove(indexes[i]);
         }
@@ -515,30 +516,31 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         if(listSpecies.getSelectedItem() != null){
             header = header + " | " + listSpecies.getSelectedItem();
         }
-        
+
         int index =  thumbnailViewer.getSelectedIndex();
         //for(int i = 0; i < indexes.length; i++){
-            if(!ImageExistInList(header + " | " + mMappedFileNames[index])){  
-                myArray.add(header + " | " + mMappedFileNames[index]);       
+            if(!ImageExistInList(header + " | " + mMappedFileNames[index])){
+                myArray.add(header + " | " + mMappedFileNames[index]);
             }
-        
+
         jList1.setListData(myArray.toArray());
-        thumbnailViewer.clearSelection();     
+        thumbnailViewer.clearSelection();
     }
-    
-    
+
+
     private boolean ImageExistInList(String img){
         for(int i = 0; i < myArray.size(); i++){
             if(img.compareTo(myArray.get(i)) == 0){
                 return true;
-            }       
-        } 
+            }
+        }
         return false;
     }
-    
+
     private void listGenusMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listGenusMouseReleased
         if (db.DataBaseExists() == false) {
-            JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         thumbnailViewer.setListData(new ImageIcon[0]);
@@ -546,25 +548,25 @@ public class ImageSelectionClass extends javax.swing.JFrame {
             return;
         else if(mTaxaLevel.compareTo("Genus") == 0)
             return;
-        
+
         String[] s;
         if(mTaxaLevel.compareTo("Common Name")==0){
             //Load species
             s = db.getCommonName(this.listGenus.getSelectedItem());
         } else{
-            s = db.getSpecies(this.listGenus.getSelectedItem());     
+            s = db.getSpecies(this.listGenus.getSelectedItem());
         }
         listSpecies.removeAll();
         //  if(this.list4.isEnabled())
         //    list4.removeAll();
         for(int i = 0; i < s.length; i++)
             this.listSpecies.add(s[i]);
-        
+
     }//GEN-LAST:event_listGenusMouseReleased
 
     private void listFamilyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listFamilyMouseReleased
-        
-        
+
+
         thumbnailViewer.setListData(new ImageIcon[0]);
         if(mTaxaLevel.compareTo("Family") != 0)
         {
@@ -578,11 +580,11 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     }//GEN-LAST:event_listFamilyMouseReleased
 
     private void listFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listFamilyActionPerformed
-   
+
     }//GEN-LAST:event_listFamilyActionPerformed
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
-        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass")); 
+        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass"));
         mMain.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2MouseReleased
@@ -590,25 +592,26 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     public String[] getFileNames(){
         return mFileNames;
     }
-    
-    
+
+
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
 
         SSave = true;
-        // Save File Names Selected 
+        // Save File Names Selected
         String[] tempArray = new String[myArray.size()];
-        for(int i = 0; i < myArray.size(); i++){   
+        for(int i = 0; i < myArray.size(); i++){
             tempArray[i] = myArray.get(i).toString();
         }
         mFileNames = tempArray;
-        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass")); 
+        mAL.actionPerformed(new ActionEvent(this, 1, "ImageSelectionClass"));
         this.setVisible(false);
         mMain.setVisible(true);
     }//GEN-LAST:event_jButton1MouseReleased
-   
+
     private void mapFilenames(){
         if (db.DataBaseExists() == false) {
-            JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] temp = new String[1];
@@ -620,21 +623,22 @@ public class ImageSelectionClass extends javax.swing.JFrame {
             temp[0] = listFamily.getSelectedItem() + " " +listGenus.getSelectedItem() + " " + listSpecies.getSelectedItem();
         else
             temp[0] = listFamily.getSelectedItem() + " " + listSpecies.getSelectedItem();
-        
+
         String[][] files = db.getFileNames(mTaxaLevel, temp, false, 0);
-       
+
         String[] mappedFileNames = new String[files.length];
-        
+
         for(int i = 0; i < files.length; i++){
-            mappedFileNames[i] = files[i][0];  
+            mappedFileNames[i] = files[i][0];
         }
-        mMappedFileNames = mappedFileNames;  
+        mMappedFileNames = mappedFileNames;
     }
-    
-    
+
+
     private void populateViewer(){
         if (db.DataBaseExists() == false) {
-            JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         double rows;
@@ -651,10 +655,10 @@ public class ImageSelectionClass extends javax.swing.JFrame {
             temp[0] = listFamily.getSelectedItem() + " " +listGenus.getSelectedItem() + " " + listSpecies.getSelectedItem();
         else
             temp[0] = listFamily.getSelectedItem() + " " + listSpecies.getSelectedItem();
-        
+
         String[][] files = db.getFileNames(mTaxaLevel, temp, false, 0);
         String st;
-        
+
         mm = new ImageIcon[files.length];
         String[] mappedFileNames = new String[files.length];
         jProgressBar1.setMaximum(files.length);
@@ -671,19 +675,20 @@ public class ImageSelectionClass extends javax.swing.JFrame {
         rows = thumbnailViewer.getHeight() / 100;
         thumbnailViewer.setVisibleRowCount((int)rows);
         thumbnailViewer.setListData(mm);
-        
+
     }
-    
+
     public boolean ShouldSave(){
         return SSave;
     }
-    
-    
-    
+
+
+
     private void LoadGenus(String family)
-    {        
+    {
         if (db.DataBaseExists() == false) {
-            JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
+            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] genus = db.getGenus(family);
@@ -693,8 +698,8 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-  
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -718,9 +723,9 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     private javax.swing.ButtonGroup taxaLevelGroup;
     private javax.swing.JList thumbnailViewer;
     // End of variables declaration//GEN-END:variables
-    
+
 //    addListSelectionListener
-//    
+//
 //    public void valueChanged(ListSelectionEvent e) {
 //    if (e.getValueIsAdjusting() == false) {
 //
@@ -736,18 +741,18 @@ public class ImageSelectionClass extends javax.swing.JFrame {
 //}
 //
 
-    
-    
-    
+
+
+
 }
 
 
 
 
 /*class ComboBoxRenderer extends JLabel implements ListCellRenderer {
-    
+
     private ThumbNailClass thumbnail = new ThumbNailClass();
-    
+
     public ComboBoxRenderer() {
         setOpaque(true);
         setHorizontalAlignment(CENTER);
@@ -786,11 +791,9 @@ public class ImageSelectionClass extends javax.swing.JFrame {
             setText(pet);
             setFont(list.getFont());
         } else {
-           
+
         }
 
         return this;
     }
 }*/
-
-

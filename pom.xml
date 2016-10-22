@@ -30,10 +30,10 @@
 
   <!-- updated ztesler, 04-2016 -->
   <groupId>org.apereo.application</groupId>
-  <artifactId>VL-HERPS</artifactId>
-  <version>1.0</version>
+  <artifactId>ImageQuiz</artifactId>
+  <version>2.0</version>
   <packaging>jar</packaging>
-  <name>VL-HERPS</name>
+  <name>ImageQuiz</name>
   <url>https://github.com/Jasig/ImageQuiz</url>
 
   <scm>
@@ -109,8 +109,8 @@
           <version>1.0.4</version>
           <configuration>
             <mainClass>scripteditor.MainForm</mainClass>
-            <jrePath>/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk</jrePath>
-            <iconFile>herps.icns</iconFile>
+            <!--jrePath>/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk</jrePath-->
+            <!--iconFile>icn.icns</iconFile-->
           </configuration>
           <executions>
             <execution>

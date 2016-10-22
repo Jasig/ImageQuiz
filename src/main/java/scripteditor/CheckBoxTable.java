@@ -309,8 +309,8 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 						value = "0";
 					Integer.parseInt(value.toString());
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(this.jtable.getParent(),
-							"Invalid Number");
+					Utilities.MessageDialog(this.jtable.getParent(), "Invalid Number");
+	                //JOptionPane.showMessageDialog(this.jtable.getParent(), "Invalid Number");
 					return;
 				}
 			} else if (((String) numberconstraints.elementAt(nCol))
@@ -323,8 +323,8 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 							.elementAt(nCol)).intValue(),
 							BigDecimal.ROUND_HALF_UP)).toString();
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(this.jtable.getParent(),
-							"Invalid Number");
+					Utilities.MessageDialog(this.jtable.getParent(), "Invalid Number");
+	                //JOptionPane.showMessageDialog(this.jtable.getParent(), "Invalid Number");
 					return;
 				}
 
@@ -385,13 +385,14 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 
 		int messageint = pos + 1;
 		if (messageint == 0) {
-			JOptionPane.showMessageDialog(this.jtable.getParent(),
-					"No rows selected");
+			Utilities.MessageDialog(this.jtable.getParent(), "No rows selected");
+			//JOptionPane.showMessageDialog(this.jtable.getParent(), "No rows selected");
 			return null;
 		}
 
-		int optionstatus = JOptionPane.showConfirmDialog(this.jtable
-				.getParent(), "Do you want to delete " + messageint + " row");
+
+		int optionstatus = Utilities.ConfirmDialog(this.jtable.getParent(), "Do you want to delete " + messageint + " row", "Delete Row?");
+		//int optionstatus = JOptionPane.showConfirmDialog(this.jtable.getParent(), "Do you want to delete " + messageint + " row", "Delete Row?", JOptionPane.YES_NO_OPTION);
 		if (optionstatus != 0) {
 			return null;
 		}

@@ -32,16 +32,18 @@ import java.util.Properties;
 /**
  *
  * @author Anurag
+
+ * this class is currently obsolete, ztesler 08/2016
  */
 public class PropertyFileReader {
- 
+
     java.util.Properties properties = new Properties();
 
     public PropertyFileReader() throws FileNotFoundException, IOException {
     InputStream inputStream = new FileInputStream(Configuration.ApplicationPath()+File.separator+"application.properties");
         properties.load(inputStream);
     }
-    
+
     public String getPropertyValue(String key)
     {
         if(properties==null){
@@ -50,6 +52,6 @@ public class PropertyFileReader {
         }
         return null;
     }
-    
-    
+
+
 }

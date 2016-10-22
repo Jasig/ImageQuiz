@@ -42,16 +42,16 @@ import javax.swing.KeyStroke;
  * @author  Moz123
  */
 public class RandomSelectDialog extends javax.swing.JDialog {
-    
+
     private String mTaxaLevel; // Taxa Level
     private int mNumberTaxa; // Number of taxa to use
    // private int mNumberImages; // number of Images per Taxa
     private boolean mCommonNames; // use Common Names when true
     private int mResult; // Return result for Continue and Cancel buttons
     private int mMode; // Study Quiz or Test modes study = 1, quiz =  2 and test = 3
-    
-    
-    
+
+
+
     /** Creates new form RandomSelectDialog */
     public RandomSelectDialog(String taxaLevel, boolean commonNames, int numTaxa) {
         initComponents();
@@ -85,10 +85,10 @@ public class RandomSelectDialog extends javax.swing.JDialog {
        if(taxaLevel.compareTo("Common Name") == 0)
        dropTaxaLevel.setSelectedIndex(4);
        }
-       
+
        dropNumberTaxa.setSelectedIndex(numTaxa - 1);
     }
-    
+
     public static void addEscapeListener(final JDialog dialog)
     {
         ActionListener escListner = new ActionListener() {
@@ -102,7 +102,7 @@ public class RandomSelectDialog extends javax.swing.JDialog {
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
-   
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -286,7 +286,7 @@ public class RandomSelectDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dropTaxaLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropTaxaLevelActionPerformed
-    
+
         if(dropTaxaLevel.getSelectedIndex() == 4){
             chkCommonNames.setEnabled(true);
         }
@@ -299,23 +299,24 @@ public class RandomSelectDialog extends javax.swing.JDialog {
         this.hide();
     }//GEN-LAST:event_btCancelMouseReleased
 
-   
+
 
     private void btContinueMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btContinueMouseReleased
         if(this.dropTaxaLevel.getSelectedIndex() < 2){
-            JOptionPane.showMessageDialog(this, "Please select a taxonomic level", "No Taxonomic Level Selected", JOptionPane.OK_OPTION);
+            Utilities.MessageDialog(this, "Please select a taxonomic level");
+            //JOptionPane.showMessageDialog(this, "Please select a taxonomic level", "No Taxonomic Level Selected", JOptionPane.OK_OPTION);
             return;
         }
         else{
-            
-            
+
+
             mTaxaLevel = this.dropTaxaLevel.getSelectedItem().toString();
             if(mTaxaLevel.compareTo("Species") == 0 && chkCommonNames.isSelected() == true){
                 mTaxaLevel = "Common Name";
             }
-            
-            
-            
+
+
+
             mNumberTaxa = this.dropNumberTaxa.getSelectedIndex() + 1;
           //  mNumberImages = this.dropNumberImages.getSelectedIndex() + 1;
             mCommonNames = this.chkCommonNames.isSelected();
@@ -335,36 +336,36 @@ public class RandomSelectDialog extends javax.swing.JDialog {
             this.setVisible(false);
         }
     }//GEN-LAST:event_btContinueMouseReleased
-    
+
     public String getTaxaLevel(){
         return mTaxaLevel;
     }
-    
+
   //  public int getImageCount(){
   //      return mNumberImages;
   //  }
-    
+
     public int getTaxaCount(){
         return mNumberTaxa;
     }
-    
+
     public boolean getUseCommonNames(){
         return mCommonNames;
     }
-    
+
     public int getResults(){
         return mResult;
     }
-    
+
     public int getMode(){
         return mMode;
     }
-    
+
     /**
      * @param args the command line arguments
      */
-  
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonGroup;
     private javax.swing.JButton btCancel;
@@ -381,5 +382,5 @@ public class RandomSelectDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     // End of variables declaration//GEN-END:variables
-    
+
 }

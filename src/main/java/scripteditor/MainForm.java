@@ -101,13 +101,16 @@ public class MainForm extends javax.swing.JFrame {
     File ScriptDirectory = null;
     public boolean inSession = true; // Tells the Script results writer if it needs to create a new file or add to the existion one.
 
-    String savedTaxaSetsPath = null;//added by anurag
+    //String savedTaxaSetsPath = null;//"Saved Taxa Sets";//added by anurag, commented by ztesler 9/2016
     //private Image image;
     /**
      * Creates new form MainForm
      */
-    PropertyFileReader propertyFileReader = null;
-    //private Image image;
+    //PropertyFileReader propertyFileReader = null; //commented ztesler 08/2016
+
+    //class variables added 8/2016 ztesler
+    private String appDisplayName;
+    private ImageIcon dialogIcon = null;
 
     /** Creates new form MainForm */
 
@@ -116,24 +119,23 @@ public class MainForm extends javax.swing.JFrame {
 
         initComponents();
 
-
-        try {
-            propertyFileReader = new PropertyFileReader();
-            this.savedTaxaSetsPath = propertyFileReader.getPropertyValue("savedTaxaSetsFolderName");
+        //commented ztesler 08/2016
+        /*try {
+            //propertyFileReader = new PropertyFileReader();
+            //this.savedTaxaSetsPath = propertyFileReader.getPropertyValue("savedTaxaSetsFolderName");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
 
         UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
          Image image=null;
         try {
-            // image=new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.jpg");
-             //image=ImageIO.read(new File(Configuration.ApplicationPath() + "/Graphics/icon.icon"));
-             image=ImageIO.read(new File(Configuration.ApplicationPath() + "/Graphics/icon.png"));
-             //image=ImageIO.read(new File(Configuration.UserPath() + "/Graphics/icon.jpg"));
+             image = ImageIO.read(new File(Configuration.ApplicationPath() + "/Graphics/icon.png"));
+             dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png"); //added 8/2016 ztesler
+             appDisplayName = ConfigFileReader.getProjectName(); //added 8/2016 ztesler
         } catch (Exception ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
             Image icon = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB_PRE);
@@ -544,7 +546,8 @@ public class MainForm extends javax.swing.JFrame {
             {
 
                 if (!mStudyClass.nextImage()) {
-                    JOptionPane.showMessageDialog(this, "No more images. \n\r Press CTRL + E or ESCAPE to Exit");
+                    Utilities.MessageDialog(this, "No more images. \n\r Press CTRL + E or ESCAPE to Exit");
+                    //JOptionPane.showMessageDialog(this, "No more images. \n\r Press CTRL + E or ESCAPE to Exit", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                 }
             }
             else if ((keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) && !mAutoImageDisplay)
@@ -556,8 +559,8 @@ public class MainForm extends javax.swing.JFrame {
 
                 mStudyClass.paused(true);
 
-                if(JOptionPane.showConfirmDialog(this, "Are you sure you wish to quit this study session?",
-                        "Exit to Main Menu?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if(Utilities.ConfirmDialog(this, "Are you sure you wish to quit this study session?", "Exit to Main Menu?") == JOptionPane.YES_OPTION) {
+                //if(JOptionPane.showConfirmDialog(this, "Are you sure you wish to quit this study session?", "Exit to Main Menu?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                     mStudyClass.mDisplayLabel.setIcon(null);
                     mStudyClass.mDisplayLabel.setText("");
@@ -635,7 +638,8 @@ public class MainForm extends javax.swing.JFrame {
             } else showMenuButtons();
             db = null;
             return;*/
-             JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            Utilities.MessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            //JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              showMenuButtons();
              db = null;
              return;
@@ -677,7 +681,8 @@ public class MainForm extends javax.swing.JFrame {
              }
             //Added by preethy on 26-01-2012
             if(fileNames.length==0){
-              JOptionPane.showMessageDialog(this, "No images selected.");
+                Utilities.MessageDialog(this, "No images selected.");
+                //JOptionPane.showMessageDialog(this, "No images selected.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
               showMenuButtons();
             }
              /***/
@@ -802,7 +807,8 @@ public class MainForm extends javax.swing.JFrame {
             }
             db = null;
             return;*/
-             JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            Utilities.MessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            //JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              showMenuButtons();
              db = null;
              return;
@@ -849,7 +855,8 @@ public class MainForm extends javax.swing.JFrame {
 
         //Added by preethy on 26-01-2012
         if(fileNames.length==0){
-               JOptionPane.showMessageDialog(this, "No images selected.");
+            Utilities.MessageDialog(this, "No images selected.");
+            //JOptionPane.showMessageDialog(this, "No images selected.");
                showMenuButtons();
             }
         else{
@@ -882,7 +889,8 @@ public class MainForm extends javax.swing.JFrame {
             }
             db = null;
             return;*/
-             JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            Utilities.MessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+            //JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              showMenuButtons();
              db = null;
              return;
@@ -916,7 +924,8 @@ public class MainForm extends javax.swing.JFrame {
         }
         //Added by preethy on 26-01-2012
         if(fileNames.length==0){
-               JOptionPane.showMessageDialog(this, "No images selected.");
+            Utilities.MessageDialog(this, "No images selected.");
+            //JOptionPane.showMessageDialog(this, "No images selected.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                showMenuButtons();
             }
         else{
@@ -933,8 +942,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void exitFunction() {
-        int retVal;
-        retVal = JOptionPane.showConfirmDialog(this,"Are you sure you wish to quit?", "Exit?",JOptionPane.YES_NO_OPTION);
+        int retVal = Utilities.ConfirmDialog(this, "Are you sure you wish to quit?", "Exit?");
+		//int retVal;
+        //retVal = JOptionPane.showConfirmDialog(this,"Are you sure you wish to quit?", "Exit?",JOptionPane.YES_NO_OPTION);
         if(retVal == JOptionPane.YES_OPTION) {
             // TODO: need to save progress to user file
             WriteProgressString(progress.getProgressArray(), mUserName);
@@ -973,7 +983,8 @@ public class MainForm extends javax.swing.JFrame {
          boolean exists = (new File(path + "/HelpFiles/taxa.pdf")).exists();
 
         if(!exists){
-            JOptionPane.showMessageDialog(this, "The file taxa.pdf could not be found.");
+            Utilities.MessageDialog(this, "The file taxa.pdf could not be found.");
+            //JOptionPane.showMessageDialog(this, "The file taxa.pdf could not be found.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
             return;
         }
 
@@ -1030,7 +1041,8 @@ public class MainForm extends javax.swing.JFrame {
         if(path.compareTo("") == 0)
         {
             //display error mesage.
-            JOptionPane.showMessageDialog(this, "There is no package selected for this session.");
+            Utilities.MessageDialog(this, "There is no package selected for this session.");
+            //JOptionPane.showMessageDialog(this, "There is no package selected for this session.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
             return;
         }
 
@@ -1431,7 +1443,7 @@ public class MainForm extends javax.swing.JFrame {
         btScript1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle(ConfigFileReader.getProjectName());
+        setTitle(appDisplayName); //updated 8/2016 ztesler
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -1697,7 +1709,8 @@ public class MainForm extends javax.swing.JFrame {
         mnuFile.add(mnuLoadScript);
         mnuFile.add(jSeparator5);
 
-        mnuaddimages.setText("Install New Database and Images");
+        // commented ztesler 10/2016
+        /*mnuaddimages.setText("Install New Database and Images");
         mnuaddimages.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 mnuaddimagesMouseReleased(evt);
@@ -1708,8 +1721,9 @@ public class MainForm extends javax.swing.JFrame {
                 mnuaddimagesActionPerformed(evt);
             }
         });
+        mnuaddimages.setEnabled(false);
         mnuFile.add(mnuaddimages);
-        mnuFile.add(jSeparator6);
+        mnuFile.add(jSeparator6);*/
 
         jMenuItem6.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 12)); // NOI18N
         jMenuItem6.setText("Save Taxa Set     Alt+S");
@@ -2314,7 +2328,8 @@ public class MainForm extends javax.swing.JFrame {
         boolean exists = (new File(path + "/HelpFiles/" + fileName)).exists();
 
         if (!exists) {
-            JOptionPane.showMessageDialog(this, "The file " + fileName + " could not be found.");
+            Utilities.MessageDialog(this, "The file " + fileName + " could not be found.");
+            //JOptionPane.showMessageDialog(this, "The file " + fileName + " could not be found.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
             return;
         }
 
@@ -2365,7 +2380,8 @@ public class MainForm extends javax.swing.JFrame {
 
         boolean exists = (new File(path + "/HelpFiles/HelpFiles.html")).exists();
         if (!exists) {
-            JOptionPane.showMessageDialog(this, "The file HelpFiles.html could not be found.");
+            Utilities.MessageDialog(this, "The file HelpFiles.html could not be found.");
+            //JOptionPane.showMessageDialog(this, "The file HelpFiles.html could not be found.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
             return;
         }
 
@@ -2384,7 +2400,8 @@ public class MainForm extends javax.swing.JFrame {
 
          boolean exists = (new File(path + "/HelpFiles/" + filename)).exists();
          if (!exists) {
-             JOptionPane.showMessageDialog(this, "The file " + filename + " could not be found.");
+             Utilities.MessageDialog(this, "The file " + filename + " could not be found.");
+             //JOptionPane.showMessageDialog(this, "The file " + filename + " could not be found.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              return;
          }
        try {
@@ -2450,7 +2467,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btTaxaSelectMouseReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       this.setTitle(ConfigFileReader.getProjectName());
+       this.setTitle(appDisplayName);
         showMenuButtons();  // Show Menu Buttons on startup!!
 
     }//GEN-LAST:event_formWindowOpened
@@ -2681,7 +2698,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
            if (taxonomicLevel == null || mTaxa == null || mTaxa.length == 0) {
-            JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen.");
+               Utilities.MessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.");
+               //JOptionPane.showMessageDialog(this, "There are no taxa selected.\n\r Press OK to be returned to the Main Screen\n where you can add taxa to the study set.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
             return;
         }
 
@@ -2689,7 +2707,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             saveTexaSet();
             //JOptionPane.showMessageDialog(this,"File Saved Successfuly!");
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Some problem occout while processing you request.Please try again!");
+            Utilities.MessageDialog(this, "Some problem occout while processing you request.Please try again!");
+            //JOptionPane.showMessageDialog(this, "Some problem occout while processing you request.Please try again!", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -2762,7 +2781,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
          // Check if there are any more sessions to execute...
          if(mSessionCount == mGlobalSessionIndex){ // Then there are no more sessions
-             JOptionPane.showMessageDialog(this,"All sessions have been completed for this script.");
+             Utilities.MessageDialog(this, "All sessions have been completed for this script.");
+             //JOptionPane.showMessageDialog(this,"All sessions have been completed for this script.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              taxonomicLevel = null;
              mTaxa = null;
              scriptMode = false;
@@ -2779,7 +2799,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
          StudentMessage = Wrap(StudentMessage, 60);
 
          if(tempMess.compareTo("") != 0){
-            JOptionPane.showMessageDialog(this, StudentMessage);
+             Utilities.MessageDialog(this, StudentMessage);
+             //JOptionPane.showMessageDialog(this, StudentMessage, appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
 
          }
 
@@ -2807,11 +2828,13 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         if (res == 1) {
             sessionType = mySessionsArray[mGlobalSessionIndex].getmType();
              if (sessionType.compareTo("study") != 0) {// Don't record a grade for a study session
-                JOptionPane.showMessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.\nA zero has been recorded for this session.");
+                Utilities.MessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.\nA zero has been recorded for this session.");
+                //JOptionPane.showMessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.\nA zero has been recorded for this session.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                 recordZeroForSession();
             }
              else{
-                  JOptionPane.showMessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.");
+                 Utilities.MessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.");
+                 //JOptionPane.showMessageDialog(this, "Session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + " has been skipped.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              }
 
             // Suppress the show progress if session is skipped!!
@@ -2913,7 +2936,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             programState = 1;
         } else {
             programState = 2;
-            JOptionPane.showMessageDialog(this, "You are about to start a " + scriptType + " from a script. Make sure you have time to complete it.\nThe session will start immediately, after clicking on OK.");
+            Utilities.MessageDialog(this, "You are about to start a " + scriptType + " from a script. Make sure you have time to complete it.\nThe session will start immediately, after clicking on OK.");
+            //JOptionPane.showMessageDialog(this, "You are about to start a " + scriptType + " from a script. Make sure you have time to complete it.\nThe session will start immediately, after clicking on OK.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
         }
 
         setWorkingState();
@@ -3049,7 +3073,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             VerifyDatabase objVerifyDB = new VerifyDatabase(Configuration.DataBaseName(), Configuration.DataBaseHashValue());
 
             if (!objVerifyDB.IsOK()) {
-                JOptionPane.showMessageDialog(this, "The DataBase has been modified. Please reinstall the program or replace the database with the original file.");
+                Utilities.MessageDialog(this, "The DataBase has been modified. Please reinstall the program or replace the database with the original file.");
+                //JOptionPane.showMessageDialog(this, "The DataBase has been modified. Please reinstall the program or replace the database with the original file.", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                 return false;
 
             }
@@ -3134,16 +3159,18 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
               copyFilesThread cp;
              if(zip.endsWith("zip"))
             {
-            int retVal = JOptionPane.showConfirmDialog(this, "The old database and images will be erased, and the new\n\r database and images in "+zip+" will be installed in their place.\n\rAre you sure you want to continue?", "No Taxa Selected!", JOptionPane.OK_CANCEL_OPTION);
+                int retVal = Utilities.ConfirmDialog(this, "The old database and images will be erased, and the new\n\r database and images in "+zip+" will be installed in their place.\n\rAre you sure you want to continue?", "No Taxa Selected!");
+        		//int retVal = JOptionPane.showConfirmDialog(this, "The old database and images will be erased, and the new\n\r database and images in "+zip+" will be installed in their place.\n\rAre you sure you want to continue?", "No Taxa Selected!", JOptionPane.OK_CANCEL_OPTION);
 
-            if(retVal == JOptionPane.OK_OPTION)
+            if(retVal == JOptionPane.YES_OPTION)
             {
                 cp = new copyFilesThread(this,temp);//this thred extrcts and copy the contents of zip files correct location
                 cp.start();
 
             }
             }else {
-                  JOptionPane.showMessageDialog(this, "Please select zip files only");
+                Utilities.MessageDialog(this, "Please select zip files only.");
+                //JOptionPane.showMessageDialog(this, "Please select zip files only", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
              }
 
             }
@@ -3221,7 +3248,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             myFileBrowser.setDialogTitle("Save");
             File f = null;
             try {
-                f = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
+                f = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets"); //added ztesler 08/2016
+                //f = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
                 myFileBrowser.setCurrentDirectory(f);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -3252,12 +3280,14 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             boolean exists = (new File(path + "\\" + tempFile)).exists();
 
             if (exists) {
-                int res = JOptionPane.showConfirmDialog(this, "Would you like to overwrite " + tempFile + "?");
+                int res = Utilities.ConfirmDialog(this, "Would you like to overwrite " + tempFile + "?", "Overwrite?");
+        		//int res = JOptionPane.showConfirmDialog(this, "Would you like to overwrite " + tempFile + "?", "Overwrite?", JOptionPane.YES_NO_OPTION);
                 if (res == JOptionPane.YES_OPTION) {
                     if (isValidFileName(tempFile)) {
                         saveTexaFile(path, tempFile);
                     } else {
-                        JOptionPane.showMessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ");
+                        Utilities.MessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ");
+                        //JOptionPane.showMessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                         return;
                     }
                 }
@@ -3265,7 +3295,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 if (isValidFileName(tempFile)) {
                     saveTexaFile(path, tempFile);
                 } else {
-                    JOptionPane.showMessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ");
+                    Utilities.MessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ");
+                    //JOptionPane.showMessageDialog(this, "File names cannnot contain / \\ : * ? \" < > | ", appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
                     return;
                 }
             }
@@ -3314,7 +3345,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
 
     private void MYFolderCheck() {
-        File toWork = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
+        File toWork = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets");
+        //File toWork = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
         if (toWork.exists() == false) {
             toWork.mkdir();
         }
@@ -3406,7 +3438,8 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         myFileBrowser.setDialogTitle("Load Saved Taxa Set");
         File f = null;
         try {
-            f = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
+            f = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets");
+            //f = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
             myFileBrowser.setCurrentDirectory(f);
         } catch (Exception ex) {
             ex.printStackTrace();
