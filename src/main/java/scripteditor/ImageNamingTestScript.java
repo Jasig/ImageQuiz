@@ -78,7 +78,7 @@ public class ImageNamingTestScript {
                 }
                 user_response = dlgQR.getResponse().trim();
                 tempPart = mSessionInfo.mImageCollection.getImageName().toLowerCase().trim();
-                tempPart = AdvancedTrim.Trim(tempPart);
+                tempPart = AdvancedTrim.trim(tempPart);
                 String completeAnswer = tempPart;
                 tempPart = getParsedName(tempPart);
 

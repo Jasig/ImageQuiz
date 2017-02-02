@@ -86,7 +86,7 @@ public class ImageNamingTest {
                 {
                 tempPart = mSessionInfo.mImageCollection.getImageName().toLowerCase().trim();
                  
-                tempPart = AdvancedTrim.Trim(tempPart);
+                tempPart = AdvancedTrim.trim(tempPart);
               //  String completeAnswer = tempPart;//Commented by preethy on 11-04-2012
                  String completeAnswer = mSessionInfo.mImageCollection.getImageName();//Added by preethy on 11-04-2012
                 tempPart = getParsedName(tempPart);

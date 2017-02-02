@@ -22,23 +22,23 @@ package scripteditor;
 import junit.framework.TestCase;
 
 /**
- * This test case documents the behavior of AdvancedTrim.Trim() as discovered.
+ * This test case documents the behavior of AdvancedTrim.trim() as discovered.
  */
 public class AdvancedTrimTest extends TestCase {
 
     /**
-     * Test that Trim() returns alphanumerics unchanged.
+     * Test that trim() returns alphanumerics unchanged.
      */
     public void testTrimIsANoOpOnAlphanumerics() {
 
         final String alphanumeric = "abcABC123";
 
-        assertEquals(alphanumeric, AdvancedTrim.Trim(alphanumeric));
+        assertEquals(alphanumeric, AdvancedTrim.trim(alphanumeric));
 
     }
 
     /**
-     * Test that Trim() trims a String with multiple trailing space characters down to one
+     * Test that trim() trims a String with multiple trailing space characters down to one
      * trailing space character.
      */
     public void testTrimsToOneTrailingWhitespace() {
@@ -46,12 +46,12 @@ public class AdvancedTrimTest extends TestCase {
         final String severalSpacesTrail = "whitespace-follows   ";
         final String justOneSpaceTrails = "whitespace-follows ";
 
-        assertEquals(justOneSpaceTrails, AdvancedTrim.Trim(severalSpacesTrail));
+        assertEquals(justOneSpaceTrails, AdvancedTrim.trim(severalSpacesTrail));
 
     }
 
     /**
-     * Test that Trim() trims a String with multiple leading space characters down to one leading
+     * Test that trim() trims a String with multiple leading space characters down to one leading
      * space character.
      */
     public void testTrimsToOneLeadingWhitespace() {
@@ -59,11 +59,11 @@ public class AdvancedTrimTest extends TestCase {
         final String severalSpacesLead = "   whitespace-led";
         final String justOneSpaceLeads = " whitespace-led";
 
-        assertEquals(justOneSpaceLeads, AdvancedTrim.Trim(severalSpacesLead));
+        assertEquals(justOneSpaceLeads, AdvancedTrim.trim(severalSpacesLead));
     }
 
     /**
-     * Test that Trim() trims a String containing multiple sequences of multiple space characters
+     * Test that trim() trims a String containing multiple sequences of multiple space characters
      * down to one space character in place of each such sequence.
      */
     public void testTrimsToOneEmbeddedWhitespaceSequences() {
@@ -75,7 +75,7 @@ public class AdvancedTrimTest extends TestCase {
             "unit testing is good for the soul";
 
         assertEquals(onlyIsolatedSpacesRemain,
-            AdvancedTrim.Trim(severalSequencesOfSeveralSpacesEmbedded));
+            AdvancedTrim.trim(severalSequencesOfSeveralSpacesEmbedded));
     }
 
 }

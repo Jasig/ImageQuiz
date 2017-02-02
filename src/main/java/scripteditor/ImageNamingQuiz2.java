@@ -144,11 +144,11 @@ public class ImageNamingQuiz2 {
                 else{
                    tempPart = mSessionInfo.mImageCollection.getImageName().toLowerCase().trim();
                  
-                   String ans=AdvancedTrim.Trim(mSessionInfo.mImageCollection.getImageName());
+                   String ans=AdvancedTrim.trim(mSessionInfo.mImageCollection.getImageName());
                    
                    String answer=getParsedName(ans);
                    
-                   tempPart = AdvancedTrim.Trim(tempPart);
+                   tempPart = AdvancedTrim.trim(tempPart);
                  //String completeAnswer = tempPart;//Commented by preethy on 11-04-2012
                  String completeAnswer = mSessionInfo.mImageCollection.getImageName();//Added by preethy on 11-04-2012
                 actual_answer = getParsedName(completeAnswer.toLowerCase().trim());

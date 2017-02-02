@@ -39,7 +39,7 @@ public class AdvancedTrim {
      * @return a copy of temp, except trimming multiple trailing spaces down to just one.
      * @throws NullPointerException if temp is null
      */
-    public static String Trim(String temp) {
+    public static String trim(String temp) {
         String ret = "";
         int i = 0;
         while (i < temp.length()) {
