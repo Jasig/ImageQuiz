@@ -6,7 +6,7 @@ See [the documentation website](http://jasig.github.io/ImageQuiz).
 
 Build using 
 
-```shell_session
+```ShellSession
 mvn package
 ```
 
