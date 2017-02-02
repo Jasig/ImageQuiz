@@ -36,7 +36,7 @@ public class AdvancedTrim {
      * Returns unchanged copies of Strings containing no sequences of multiple space characters.
      *
      * @param temp non-null String
-     * @return a copy of temp, except trimming multiple trailing spaces down to just one.
+     * @return a copy of temp, except trimming sequences of multiple spaces down to single spaces.
      * @throws NullPointerException if temp is null
      */
     public static String trim(String temp) {
