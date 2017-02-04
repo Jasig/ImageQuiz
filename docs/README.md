@@ -15,6 +15,10 @@ Image quiz is an application for delivering quizzes where the answers to the que
 
 [More videos](videos.md)
 
+## Discuss
+
++ [imagequiz-discuss Google Group][imagequiz-discuss@]
+
 ## License
 
 Image Quiz is distributed under Apache-2.0.
@@ -22,3 +26,5 @@ Image Quiz is distributed under Apache-2.0.
 ## About this website
 
 See [about this website](about-this-website.md).
+
+[imagequiz-discuss@]: https://groups.google.com/a/apereo.org/forum/#!forum/imagequiz-discuss
