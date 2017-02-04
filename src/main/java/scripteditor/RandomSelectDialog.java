@@ -304,7 +304,6 @@ public class RandomSelectDialog extends javax.swing.JDialog {
     private void btContinueMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btContinueMouseReleased
         if(this.dropTaxaLevel.getSelectedIndex() < 2){
             Utilities.MessageDialog(this, "Please select a taxonomic level");
-            //JOptionPane.showMessageDialog(this, "Please select a taxonomic level", "No Taxonomic Level Selected", JOptionPane.OK_OPTION);
             return;
         }
         else{

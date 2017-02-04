@@ -143,7 +143,6 @@ public class dlgEqualize_1 extends javax.swing.JDialog {
        mPsize = Integer.parseInt(temp);
        if(mPsize > mMax){
            Utilities.MessageDialog(this, "The value entered is over the max allowed.");
-           //javax.swing.JOptionPane.showMessageDialog(this, "The value entered is over the max allowed.");
            return;
        }
 

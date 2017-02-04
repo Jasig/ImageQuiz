@@ -40,8 +40,8 @@ import java.util.Calendar;
  * @author Moz123
  */
 public class StudyImageClass extends Thread {
-    
-    
+
+
     double imageDisplayTime = 1; // Time to display image before image name appears
     double mFixationTime = 0.5;
     boolean Running = false;
@@ -72,7 +72,7 @@ public class StudyImageClass extends Thread {
         /** Creates a new instance of StudyImageClass */
 
         public StudyImageClass(Component parentForm, JLabel displayLabel, boolean randomize, ActionListener al, String[][] fileNames, boolean sf, String taxaLevel,MainForm obj,JPanel p){
-        
+
         mForm = parentForm;
         mDisplayLabel = displayLabel;
         mRandomize = randomize;
@@ -84,13 +84,13 @@ public class StudyImageClass extends Thread {
         mForm2=obj;
         mPanel=p;
     }
-    
+
         /**
          * following constructor call is added by anurag to provide alphabatical sorting for study scripting functionality
         **/
-    public StudyImageClass(Component parentForm, JLabel displayLabel, boolean randomize, ActionListener al, String[][] fileNames, boolean sf, 
+    public StudyImageClass(Component parentForm, JLabel displayLabel, boolean randomize, ActionListener al, String[][] fileNames, boolean sf,
             String taxaLevel,MainForm obj,JPanel p, boolean  fromScript){
-        
+
         mForm = parentForm;
         mDisplayLabel = displayLabel;
         mRandomize = randomize;
@@ -103,7 +103,7 @@ public class StudyImageClass extends Thread {
         mPanel=p;
         this.fromScript = fromScript;
     }
-    
+
     @Override
     public void run(){
         Running = true;
@@ -111,15 +111,15 @@ public class StudyImageClass extends Thread {
         String currentDirectory = Configuration.ApplicationPath() + "/images";
       //  String currentDirectory = Configuration.UserPath() + "/images";
         String[] info = new String[mResults.length];
-      
+
         for(int i = 0; i < info.length; i++){
             info[i] = mResults[i][0] + ";" + mResults[i][1]; // Concats example ( 01332.jpg;Acer )
-          
+
         }
         try{ //Added by preethy
        // myCollection = new ImageCollection(info, currentDirectory, mRandomize,mPanel,mForm2);
         myCollection = new ImageCollection(info, currentDirectory, mRandomize, this.fromScript);
-        myCollection.fromScript = true;   
+        myCollection.fromScript = true;
         myCollection.start();
         if(autoRun)
             AutoRunning();
@@ -132,71 +132,71 @@ public class StudyImageClass extends Thread {
         }
          //Added by preethy 28-01-2012
         catch(Exception e){
-                       
+
             if(info.length>0)
             {
-                JOptionPane.showMessageDialog(mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
+                Utilities.MessageDialog(mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
               mForm2.showMenuButtons();
             }
-            
+
         }
         /**/
     }
-    
+
     public void setDisplayTime(double t){
         imageDisplayTime = t;
     }
-    
+
     public void setFixationTime(double t){
         mFixationTime = t;
     }
-    
+
     public void setImageWithName(boolean b){
         imageWithName = b;
     }
-    
+
     public void setAutoRun(boolean b){
         autoRun = b;
     }
-    
+
     public void stopStudying(){
         Running = false;
         mDisplayLabel.setIcon(null);
         mDisplayLabel.setText("");
          mDisplayLabel.removeAll();
     }
-    
+
     public void keyHit(){
         mNaiContinue = true;
     }
-    
+
     public boolean nextImage(){// Returns a boolean telling if there are anymore next Images.
         boolean isMore = false;
         try {
             isMore = myCollection.MoveNext();
-        
+
         } catch(Exception npe) {
             //npe.printStackTrace();
             String retmsg = npe.toString();
             String msg = npe.getMessage();
             if(retmsg.contains("NullPointerException"))
                 msg = "Images specified in the database are missing in images folder. Add images to continue.";
-            JOptionPane.showMessageDialog(mForm, msg);
+            Utilities.MessageDialog(mForm, msg);
             return false;
         }
         Image tempImage;
         if(isMore == true){
-           
+
             tempImage = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), (int) ddd.getWidth(), (int) ddd.getHeight(), mDisplayLabel);
             mDisplayLabel.setIcon(new ImageIcon(tempImage));
-            
-            
+
+
             if(autoRun || (!autoRun && imageWithName)){
-                
+
                     setImageName(mNameLabel, getParsedName(getImageName()), mNameLabelY);
             }
             if(mShowFamily){
-                 
+
                 String temp = getImageName();
                 setImageName(mFamilyLabel, temp.substring(0, temp.indexOf(' ')), mFamilyLabelY);
                 if(imageWithName){
@@ -220,15 +220,15 @@ public class StudyImageClass extends Thread {
         int width = (int)(3 * lbl.getFont().getSize() / 5.0 * (txt.length() + 4));
         lbl.setLocation(xCenter - width/2, labelY);
         lbl.setSize(width, mNameLabelHeight);
-         
+
         lbl.setText(txt);
-            
+
     }
-    
+
     public String getImageName(){
         return myCollection.getImageName();
     }
-    
+
     public void prevImage(){
         boolean isMore = myCollection.MovePrevious();
         Image tempImage;
@@ -236,17 +236,17 @@ public class StudyImageClass extends Thread {
             tempImage = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), (int) ddd.getWidth(), (int) ddd.getHeight(), mDisplayLabel);
         mDisplayLabel.setIcon(new ImageIcon(tempImage));
             if(imageWithName){
-               
+
                 setImageName(mNameLabel, getParsedName(getImageName()), mNameLabelY);
             }
             if(mShowFamily){
-                 
+
                 String temp = getImageName();
                 setImageName(mFamilyLabel, temp.substring(0, temp.indexOf(' ')), mFamilyLabelY);
             }
         }
     }
-    
+
     @SuppressWarnings("empty-statement")
     private void JCDelay(double de) {
         de = de * 1000;
@@ -257,13 +257,13 @@ public class StudyImageClass extends Thread {
 
             if(mPaused == true)
                 break;
-            
+
         }
 
     }
 
-   
-    
+
+
     private void AutoRunning(){
         //Load name label
         //Add to DisplayLabel
@@ -286,7 +286,7 @@ public class StudyImageClass extends Thread {
             mFamilyLabel.setHorizontalAlignment(JLabel.CENTER);
             Font myFont2 = new Font("Tahoma", Font.BOLD, 30);
             mFamilyLabel.setFont(myFont2);
-            
+
             String temp = getImageName();
             mFamilyLabel.setSize(mForm.getWidth(), 30);
             // depending on the mode put the Family name up of center
@@ -295,13 +295,13 @@ public class StudyImageClass extends Thread {
             }
             else
                 mFamilyLabelY = (int)(dd.getHeight() / 2) - mNameLabel.getHeight();
-            
-            
-            
+
+
+
             mFamilyLabel.setOpaque(true);
             mDisplayLabel.add(mFamilyLabel);
             setImageName(mFamilyLabel, temp.substring(0, temp.indexOf(' ')), mFamilyLabelY);
-        } 
+        }
         mDisplayLabel.setHorizontalAlignment(JLabel.CENTER);
         mDisplayLabel.setText("+");
         JCDelay(mFixationTime);
@@ -309,7 +309,7 @@ public class StudyImageClass extends Thread {
         mDisplayLabel.setVisible(false);                            //////// Optimizing
         tempImage = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), (int) ddd.getWidth(), (int) ddd.getHeight(), mDisplayLabel);
         mDisplayLabel.setIcon(new ImageIcon(tempImage));
-       
+
         String tempName = myCollection.getImageName();
         int idx = tempName.indexOf(' ');
         // Need if Statement here for NameLabel;
@@ -318,7 +318,7 @@ public class StudyImageClass extends Thread {
 //        }
 //        else
         setImageName(mNameLabel, getParsedName(tempName), mNameLabelY);
-       
+
         if(imageWithName){
             mNameLabel.setVisible(true);
         }
@@ -326,7 +326,7 @@ public class StudyImageClass extends Thread {
             setImageName(mFamilyLabel, tempName.substring(0, idx), mFamilyLabelY);
             mFamilyLabel.setVisible(true);
         }
-        mDisplayLabel.setVisible(true);            
+        mDisplayLabel.setVisible(true);
         JCDelay(imageDisplayTime);
         mDisplayLabel.setIcon(null);
         if(mShowFamily  && imageWithName){
@@ -363,8 +363,8 @@ public class StudyImageClass extends Thread {
         //System.out.println("run :"+Running);
         while(Running)
         {
-            
-          // System.out.println("while======"); 
+
+          // System.out.println("while======");
             // Fixation Point
             while(mPaused == true && Running == true)
             {
@@ -372,15 +372,15 @@ public class StudyImageClass extends Thread {
                     StudyImageClass.sleep(10);
                 } catch(InterruptedException e){}
             }
-            
-                        
+
+
             if(Running == false)
                 break;
             mDisplayLabel.setIcon(null);
             if(mShowFamily && imageWithName){
                 mFamilyLabel.setVisible(false);
             }
-            
+
             mDisplayLabel.setText("");
             mDisplayLabel.setText("+");
             JCDelay(mFixationTime);
@@ -390,7 +390,7 @@ public class StudyImageClass extends Thread {
             if(Running == false){
                 break;
             }
-            
+
             if(imageWithName){
                 mNameLabel.setVisible(true);
             }
@@ -400,7 +400,7 @@ public class StudyImageClass extends Thread {
             if(imageWithName){
                 mNameLabel.setVisible(false);
             }
-         
+
             if(imageWithName == false){
                 //mDisplayLabel.setIcon(null); //clear the image
                 if(mShowFamily){// && imageWithName){
@@ -420,7 +420,7 @@ public class StudyImageClass extends Thread {
                 try{
                     StudyImageClass.sleep(10);
                 } catch(InterruptedException e){}
-            }     
+            }
                 }
              mNaiContinue = false;
                  if(mShowFamily){
@@ -428,7 +428,7 @@ public class StudyImageClass extends Thread {
                     }
                 mNameLabel.setVisible(false);
             }
-            
+
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e){ }
@@ -436,24 +436,24 @@ public class StudyImageClass extends Thread {
         mDisplayLabel.removeAll();
         mDisplayLabel.setVisible(true);
     }
-    
+
      public boolean nextImageQ(){// Returns a boolean telling if there are anymore next Images.
          boolean isMore = false;
          try {
              isMore = myCollection.MoveNext();
-             
+
          } catch(NullPointerException npe) {
              String msg = npe.getMessage();
-             JOptionPane.showMessageDialog(mForm, msg);
+             Utilities.MessageDialog(mForm, msg);
              return false;
          }
          Image tempImage;
          if(isMore == true){
              tempImage = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), (int) ddd.getWidth(), (int) ddd.getHeight(), mDisplayLabel);
             mDisplayLabel.setIcon(new ImageIcon(tempImage));
-             
+
              setImageName(mNameLabel, getParsedName(getImageName()), mNameLabelY);
-             
+
              String temp = getImageName();
              setImageName(mFamilyLabel, temp.substring(0, temp.indexOf(' ')), mFamilyLabelY);
              return true;
@@ -480,7 +480,7 @@ public class StudyImageClass extends Thread {
         mFamilyLabel.setHorizontalAlignment(JLabel.CENTER);
         Font myFont2 = new Font("Tahoma", Font.BOLD, 30);
         mFamilyLabel.setFont(myFont2);
-         
+
         String temp = getImageName();
         mFamilyLabel.setSize(mForm.getWidth(), 30);
         // depending on the mode put the Family name up of center
@@ -496,7 +496,7 @@ public class StudyImageClass extends Thread {
         mDisplayLabel.setVisible(false);                            //////// Optimizing
         tempImage = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), (int) ddd.getWidth(), (int) ddd.getHeight(), mDisplayLabel);
         mDisplayLabel.setIcon(new ImageIcon(tempImage));
-         
+
         String tempName = myCollection.getImageName();
         int idx = tempName.indexOf(' ');
         setImageName(mNameLabel, getParsedName(tempName), mNameLabelY);
@@ -557,14 +557,14 @@ public class StudyImageClass extends Thread {
         mDisplayLabel.setVisible(true);
 
     }
-    
+
      private void setStandardNameLabel(){
         mNameLabel = new JLabel();
         mNameLabel.setVisible(false);
         mNameLabel.setHorizontalAlignment(JLabel.CENTER);
          Font myFont;
         if(mTlevel.equals("Genus")||(mTlevel.equals("Species"))){
-          myFont = new Font("Tahoma", Font.ITALIC, 30); 
+          myFont = new Font("Tahoma", Font.ITALIC, 30);
         }else{
           myFont = new Font("Tahoma", Font.BOLD, 30);
         }
@@ -574,7 +574,7 @@ public class StudyImageClass extends Thread {
         mNameLabel.setOpaque(true);
         mDisplayLabel.add(mNameLabel);
     }
-       
+
     private void ManuelRun(){
         Image tempImage;
         if(imageWithName){
@@ -584,7 +584,7 @@ public class StudyImageClass extends Thread {
             dd = mDisplayLabel.getSize();
             mNameLabelY = 200 + (int)ddd.getHeight() / 2;
             xCenter = (int)dd.getWidth() / 2;
-            
+
             setImageName(mNameLabel, getParsedName(getImageName()), mNameLabelY);
             mNameLabel.setVisible(true);
             // Label for Family name at top of screen
@@ -594,7 +594,7 @@ public class StudyImageClass extends Thread {
                 mFamilyLabel.setHorizontalAlignment(JLabel.CENTER);
                 Font myFont2 = new Font("Tahoma", Font.BOLD, 30);
                 mFamilyLabel.setFont(myFont2);
-                
+
                 String temp = getImageName();
                 mFamilyLabel.setSize(mForm.getWidth(), 30);
                 mFamilyLabel.setOpaque(true);
@@ -615,18 +615,18 @@ public class StudyImageClass extends Thread {
         if(mShowFamily)
             mDisplayLabel.remove(mFamilyLabel);
     }
-    
+
     public void paused(boolean pause){
         mPaused = pause;
     }
-    
+
     public void setKeyToContinue(boolean temp){
         mKeyToContinue = temp;
     }
-    
+
     private String getParsedName(String temp){
         int index = 0;
-        
+
         if(mTlevel.compareTo("Family") != 0){
             index = temp.indexOf(' ');
             temp = temp.substring(index + 1, temp.length());
@@ -634,5 +634,3 @@ public class StudyImageClass extends Thread {
         return temp;
     }
 }
-
-

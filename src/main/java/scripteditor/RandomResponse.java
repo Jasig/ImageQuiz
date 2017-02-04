@@ -68,7 +68,6 @@ public class RandomResponse {
                 break;
         }
         Utilities.MessageDialog(mParentForm, msg);
-        //JOptionPane.showMessageDialog(mParentForm, msg);
     }
 
 }

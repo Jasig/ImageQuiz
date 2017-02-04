@@ -124,7 +124,6 @@ public class QuizClass extends Thread {
             {
 
                 Utilities.MessageDialog(mSessionInfo.mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
-                //JOptionPane.showMessageDialog(mSessionInfo.mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
               mForm.showMenuButtons();
             }
 

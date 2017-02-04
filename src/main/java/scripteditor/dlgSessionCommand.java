@@ -181,8 +181,6 @@ public class dlgSessionCommand extends javax.swing.JDialog {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
 
         int res = Utilities.ConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?");
-		//int res;
-        //res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
         if(res == JOptionPane.YES_OPTION){
              response = 2; // Quit
                this.setVisible(false);
@@ -204,8 +202,6 @@ public class dlgSessionCommand extends javax.swing.JDialog {
 private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 // TODO add your handling code here:
     int res = Utilities.ConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?");
-    //int res;
-    //res = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit? If you select yes the script will\nterminate and no data will be recorded. You can run the script again\nby loading the same script file.", "Quit Session?", JOptionPane.YES_NO_OPTION);
     if(res == JOptionPane.YES_OPTION){
          response = 2; // Quit
            this.setVisible(false);

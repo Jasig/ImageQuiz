@@ -227,7 +227,6 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
     }
     public void stop(){
         int ret = Utilities.ConfirmDialog(this, "Are you sure you want to quit?", "Quit?");
-        //int ret = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Quit?", JOptionPane.YES_NO_OPTION);
     if(ret == JOptionPane.YES_OPTION)
     {
         mRunning = false;
@@ -261,7 +260,6 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
       {
 
           int ret = Utilities.ConfirmDialog(this, "Are you sure you want to quit?", "Quit?");
-          //int ret = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Quit?", JOptionPane.YES_NO_OPTION);
         if(ret == JOptionPane.YES_OPTION)
         {
             mRunning = false;

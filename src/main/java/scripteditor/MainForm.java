@@ -558,7 +558,6 @@ public class MainForm extends javax.swing.JFrame {
                 mStudyClass.paused(true);
 
                 if(Utilities.ConfirmDialog(this, "Are you sure you wish to quit this study session?", "Exit to Main Menu?") == JOptionPane.YES_OPTION) {
-                //if(JOptionPane.showConfirmDialog(this, "Are you sure you wish to quit this study session?", "Exit to Main Menu?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                     mStudyClass.mDisplayLabel.setIcon(null);
                     mStudyClass.mDisplayLabel.setText("");
@@ -935,8 +934,6 @@ public class MainForm extends javax.swing.JFrame {
 
     private void exitFunction() {
         int retVal = Utilities.ConfirmDialog(this, "Are you sure you wish to quit?", "Exit?");
-		//int retVal;
-        //retVal = JOptionPane.showConfirmDialog(this,"Are you sure you wish to quit?", "Exit?",JOptionPane.YES_NO_OPTION);
         if(retVal == JOptionPane.YES_OPTION) {
             // TODO: need to save progress to user file
             WriteProgressString(progress.getProgressArray(), mUserName);
@@ -2794,7 +2791,6 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
          int res = dlgSC.getResponse();
 
-         //int res = JOptionPane.showConfirmDialog(this, "Would you like to run the session " + mySessionsArray[mGlobalSessionIndex].getSessionName() + "?", "Run Session?", JOptionPane.YES_NO_CANCEL_OPTION);
 
          // Closes the Script File and Exits to main menu
          if(res == 2){
@@ -3137,7 +3133,6 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
              if(zip.endsWith("zip"))
             {
                 int retVal = Utilities.ConfirmDialog(this, "The old database and images will be erased, and the new\n\r database and images in "+zip+" will be installed in their place.\n\rAre you sure you want to continue?", "No Taxa Selected!");
-        		//int retVal = JOptionPane.showConfirmDialog(this, "The old database and images will be erased, and the new\n\r database and images in "+zip+" will be installed in their place.\n\rAre you sure you want to continue?", "No Taxa Selected!", JOptionPane.OK_CANCEL_OPTION);
 
             if(retVal == JOptionPane.YES_OPTION)
             {
@@ -3257,7 +3252,6 @@ private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
             if (exists) {
                 int res = Utilities.ConfirmDialog(this, "Would you like to overwrite " + tempFile + "?", "Overwrite?");
-        		//int res = JOptionPane.showConfirmDialog(this, "Would you like to overwrite " + tempFile + "?", "Overwrite?", JOptionPane.YES_NO_OPTION);
                 if (res == JOptionPane.YES_OPTION) {
                     if (isValidFileName(tempFile)) {
                         saveTexaFile(path, tempFile);

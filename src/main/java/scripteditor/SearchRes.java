@@ -261,22 +261,16 @@ public boolean taxanull=false;
        if(level.equals("Family"))
           {
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of families and the selected \n taxa are at the " +searchLevel+ " level. Please select a different option.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of families and the selected \n taxa are at the " +searchLevel+ " level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Common Name") ) ){
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set because\n the current study set consists of species (selected by common name) and\n the selected taxa are at the generic level. Please select a different option.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set because\n the current study set consists of species (selected by common name) and\n the selected taxa are at the generic level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Genus") ) ){
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of genera and the selected \n taxa are at the species level. Please select a different option.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of genera and the selected \n taxa are at the species level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Species")) && (searchLevel.equals("Genus")) ){
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of species selected by \n their scientific names, and the selected taxa are at the genus level.\n Please select a different option.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of species selected by \n their scientific names, and the selected taxa are at the genus level.\n Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Species")) && (searchLevel.equals("Common Name")) ){
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study because the current \nstudy set consists of species selected by their scientific names, and the selected taxa \nare at the species level, selected by common name. Please select a different option.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study because the current \nstudy set consists of species selected by their scientific names, and the selected taxa \nare at the species level, selected by common name. Please select a different option.");
           }else if(exist){
               Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because these taxa are already selected.");
-              //JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because these taxa are already selected.");
           }
       else
        {

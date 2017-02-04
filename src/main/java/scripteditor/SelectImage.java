@@ -460,7 +460,6 @@ else
         if(imageCount==0)
         {
             Utilities.MessageDialog(this, "There are currently no images selected.");
-            //JOptionPane.showMessageDialog(this, "There are currently no images selected.");
             return;
         }
         else
@@ -476,14 +475,12 @@ else
             count.setText("0");
             count.setForeground(Color.red);
             Utilities.MessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
-            //JOptionPane.showMessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
             this.setVisible(false);
             return;
 
         }else if((!ch1.isSelected()) && (!ch2.isSelected()) && (!ch3.isSelected()) && (!ch4.isSelected()))
         {
             Utilities.MessageDialog(this, "Please select one of the check box.");
-            //JOptionPane.showMessageDialog(this, "Please select one of the check box.");
 
         }
         else{

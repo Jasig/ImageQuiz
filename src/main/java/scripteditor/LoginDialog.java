@@ -343,7 +343,6 @@ public class LoginDialog extends javax.swing.JDialog {
             tfCreateUser.setText("");
             //tfCreatePassword.setText("");
         } //else if(tfCreatePassword.getPassword().length < 4) {
-          //  JOptionPane.showMessageDialog(mForm, "Password must have a least four characters!");
           //  tfCreatePassword.setText("");
        // }
         else{

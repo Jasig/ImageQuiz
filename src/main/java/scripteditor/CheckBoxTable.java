@@ -389,7 +389,6 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 
 
 		int optionstatus = Utilities.ConfirmDialog(this.jtable.getParent(), "Do you want to delete " + messageint + " row", "Delete Row?");
-		//int optionstatus = JOptionPane.showConfirmDialog(this.jtable.getParent(), "Do you want to delete " + messageint + " row", "Delete Row?", JOptionPane.YES_NO_OPTION);
 		if (optionstatus != 0) {
 			return null;
 		}

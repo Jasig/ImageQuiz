@@ -108,10 +108,10 @@ public class SelectImage2 extends javax.swing.JDialog {
         String frFile = DataBaseDriver.DATABASE_FOLDER + "/" + DataBaseDriver.FIELD_RELATIONSHIPS_FILE;
         // do nothing if relStatus is "success" or "no file"
         if (relStatus.equals("read error")) {
-            JOptionPane.showMessageDialog(this, "The file " + frFile + " was not read properly. Please close the Groups window and try again.");
+            Utilities.MessageDialog(this, "The file " + frFile + " was not read properly. Please close the Groups window and try again.");
         }
         else if (relStatus.equals("duplicate in set")) {
-            JOptionPane.showMessageDialog(this, "At least one duplicate value was detected in " + frFile + " within a single set. Please close the Groups window, double-check the file, and make sure you don't repeat a column within a single group set (that is, between one RECIPROCAL column and the next).");
+            Utilities.MessageDialog(this, "At least one duplicate value was detected in " + frFile + " within a single set. Please close the Groups window, double-check the file, and make sure you don't repeat a column within a single group set (that is, between one RECIPROCAL column and the next).");
         }
         else if (relStatus.equals("invalid header value")) {
         }
@@ -1077,7 +1077,7 @@ public class SelectImage2 extends javax.swing.JDialog {
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         // TODO add your handling code here:
         if (imageCount == 0) {
-            JOptionPane.showMessageDialog(this, "There are currently no images selected.");
+            Utilities.MessageDialog(this, "There are currently no images selected.");
             return;
         } else {
             this.setVisible(false);
@@ -1091,12 +1091,12 @@ public class SelectImage2 extends javax.swing.JDialog {
             imagecountLabel.setText("Total number of images selected: ");
             count.setText("0");
             count.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
+            Utilities.MessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
             //this.setVisible(false);
             return;
 
         } else if ((!ch1.isSelected()) && (!ch2.isSelected()) && (!ch3.isSelected()) && (!ch4.isSelected())) {
-            JOptionPane.showMessageDialog(this, "Please select one of the \"Select by\" check boxes below to determine what you'll be quizzed on.");
+            Utilities.MessageDialog(this, "Please select one of the \"Select by\" check boxes below to determine what you'll be quizzed on.");
 
         } else {
             select = true;
