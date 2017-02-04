@@ -30,7 +30,7 @@
 
   <groupId>org.apereo.application</groupId>
   <artifactId>ImageQuiz</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>ImageQuiz</name>
   <url>https://github.com/Jasig/ImageQuiz</url>
