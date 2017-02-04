@@ -46,14 +46,13 @@ public class LoginDialog extends javax.swing.JDialog {
     public boolean closeMain = true;
     UserClass user;
     String savedTaxaSetsPath = null;//added by anurag
-    //PropertyFileReader propertyFileReader = null; //commented ztesler 08/2016
+    //PropertyFileReader propertyFileReader = null;
     /** Creates new form LoginDialog */
     public LoginDialog(Component form, UserClass Uzer) {
         mForm = form;
         user = Uzer;
         initComponents();
 
-        //commented ztesler 08/2016
         /*try {
             //propertyFileReader = new PropertyFileReader();
             //this.savedTaxaSetsPath = propertyFileReader.getPropertyValue("savedTaxaSetsFolderName");
@@ -316,14 +315,12 @@ public class LoginDialog extends javax.swing.JDialog {
          String response;
         response = user.login(tfUser.getText(), "NotRequired");//tfPassword.getPassword());
         if(response == "AccessGranted"){
-            //JOptionPane.showMessageDialog(mForm, "Login Successful! \n\r Welcome to Image Quiz " + tfUser.getText() + ".");
             mUserName = tfUser.getText();
             closeMain = false;
             this.hide();
         }
         else if(response == "FileNotFound"){
             Utilities.MessageDialog(mForm, "Your file was not found. If you do not have a file please create one \n\rby using the create new user box on the right.");
-            //JOptionPane.showMessageDialog(mForm, "Your file was not found. If you do not have a file please create one \n\rby using the create new user box on the right.");
              //tfPassword.setText("");
         }
         else if(response == "CantReadLine"){
@@ -332,8 +329,6 @@ public class LoginDialog extends javax.swing.JDialog {
         }
         else{
             Utilities.MessageDialog(mForm, "Access Denied.");
-            //JOptionPane.showMessageDialog(mForm, "AccessDenied.");
-            //JOptionPane.showMessageDialog(mForm, "The password did not match the username! Please try the password again.");
             //tfPassword.setText("");
             //AccessDenied. Invalid Password
         }
@@ -345,7 +340,6 @@ public class LoginDialog extends javax.swing.JDialog {
          String response;
         if(tfCreateUser.getText().length() < 4){
             Utilities.MessageDialog(mForm, "Username must have a least four characters!");
-            //JOptionPane.showMessageDialog(mForm, "Username must have a least four characters!");
             tfCreateUser.setText("");
             //tfCreatePassword.setText("");
         } //else if(tfCreatePassword.getPassword().length < 4) {
@@ -356,17 +350,14 @@ public class LoginDialog extends javax.swing.JDialog {
             response = user.createNewUser(tfCreateUser.getText(), "Not Required");//tfCreatePassword.getPassword());
             if(response == "UserAlreadyExists"){
                 Utilities.MessageDialog(mForm, "The username already exists. Please use another username.");
-                //JOptionPane.showMessageDialog(mForm, "The username already exists. Please use another username.");
                 tfCreateUser.setText("");
                 //tfCreatePassword.setText("");
             } else if(response == "CanNotCreateUser"){
                 Utilities.MessageDialog(mForm, "Can not create a new user! Please make sure you have \n\rwrite permissions on the current drive.");
-                //JOptionPane.showMessageDialog(mForm, "Can not create a new user! Please make sure you have \n\rwrite permissions on the current drive.");
                 //tfCreatePassword.setText("");
             } else{
                 MYFolderCheck();
                 Utilities.MessageDialog(mForm, "Username (" + tfCreateUser.getText() + ") has been created. Please remember your \n\rnew Username.");
-                //JOptionPane.showMessageDialog(mForm, "Username (" + tfCreateUser.getText() + ") has been created. Please remember your \n\rnew Username.");// and Password.");
                 mUserName = tfCreateUser.getText();
                 closeMain = false;
                 this.hide();
@@ -377,7 +368,7 @@ public class LoginDialog extends javax.swing.JDialog {
     }
 
     private void MYFolderCheck() {
-        File toWork = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets"); //added ztesler 08/2016
+        File toWork = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets");
         //File toWork = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
         if (toWork.exists() == false) {
             toWork.mkdir();

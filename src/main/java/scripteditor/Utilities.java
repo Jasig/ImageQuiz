@@ -27,19 +27,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.*; //added ztesler
-import java.awt.*; //added ztesler
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
  * @author bpurcell
- * Modifications by ztesler, 08-2016
  */
 public class Utilities {
 
-    //static String OSType = "MAC";      //"MAC"  "PC"  commented ztesler
+    //static String OSType = "MAC";      //"MAC"  "PC"
 
-    //added ztesler
     public static boolean IsWindows() {
         String os = System.getProperty("os.name").toLowerCase();
         return os.contains("win");
@@ -47,8 +45,8 @@ public class Utilities {
 
     public static void OpenExternalFile(String path) throws IOException {
         String cmd[];
-        //if (OSType.compareToIgnoreCase("MAC") == 0) { //commented ztesler
-        if(!IsWindows()) { //added ztesler
+        //if (OSType.compareToIgnoreCase("MAC") == 0) {
+        if(!IsWindows()) {
             cmd = new String[] {"open", path};
         } else {
             cmd = new String[] {"cmd", "/c", "start \"\" \"" + path + "\""};
@@ -63,7 +61,6 @@ public class Utilities {
 
     }
 
-    //added ztesler
     public static void MessageDialog(Component component, String message) {
         ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
         String appDisplayName = ConfigFileReader.getProjectName();
@@ -71,7 +68,6 @@ public class Utilities {
         JOptionPane.showMessageDialog(component, message, appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
     }
 
-    //added ztesler
     public static int ConfirmDialog(Component component, String message, String title) {
         ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
 

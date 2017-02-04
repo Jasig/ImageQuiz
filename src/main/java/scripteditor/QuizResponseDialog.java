@@ -195,7 +195,6 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
             clip = Toolkit.getDefaultToolkit().getSystemClipboard();
         } catch (HeadlessException ex) {
             Utilities.MessageDialog(this, "Problem");
-            //JOptionPane.showMessageDialog(this, "Problem");
         }
         clip.setContents(mySelection, mySelection);// TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated

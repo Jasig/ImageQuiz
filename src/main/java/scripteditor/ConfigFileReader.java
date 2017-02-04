@@ -21,7 +21,6 @@
  * and open the template in the editor.
 
 
- Updated 8/2016 by ztesler
  */
 package scripteditor;
 

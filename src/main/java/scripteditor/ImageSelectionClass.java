@@ -363,7 +363,6 @@ public class ImageSelectionClass extends javax.swing.JFrame {
 
         if (db.DataBaseExists() == false) {
             Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
-            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] tempArray = new String[myArray.size()];
@@ -540,7 +539,6 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     private void listGenusMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listGenusMouseReleased
         if (db.DataBaseExists() == false) {
             Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
-            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         thumbnailViewer.setListData(new ImageIcon[0]);
@@ -611,7 +609,6 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     private void mapFilenames(){
         if (db.DataBaseExists() == false) {
             Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
-            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] temp = new String[1];
@@ -638,7 +635,6 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     private void populateViewer(){
         if (db.DataBaseExists() == false) {
             Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
-            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         double rows;
@@ -688,7 +684,6 @@ public class ImageSelectionClass extends javax.swing.JFrame {
     {
         if (db.DataBaseExists() == false) {
             Utilities.MessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
-            //JOptionPane.showMessageDialog(this, "The database file " + Configuration.DataBaseName() + " cannot be found!");
             return;
         }
         String[] genus = db.getGenus(family);

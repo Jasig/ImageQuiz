@@ -99,7 +99,7 @@ public class SelectImage2 extends javax.swing.JDialog {
         jPanel1D.setVisible(false);
         jPanel1E.setVisible(false);
         jPanel1F.setVisible(false);
-        
+
         imagecountLabel.setBounds(35, 360, 199, 10);
         count.setBounds(252, 360, 39, 12);
         addEscapeListener(this);
@@ -114,7 +114,6 @@ public class SelectImage2 extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "At least one duplicate value was detected in " + frFile + " within a single set. Please close the Groups window, double-check the file, and make sure you don't repeat a column within a single group set (that is, between one RECIPROCAL column and the next).");
         }
         else if (relStatus.equals("invalid header value")) {
-            //JOptionPane.showMessageDialog(this, "One of your columns in " + frFile + " doesn't match any columns in your database file. Please close the Groups window, check both CSV files, and try again.");
         }
         adv_options = maxImages;
         header = db.GetHeader();
@@ -141,10 +140,10 @@ public class SelectImage2 extends javax.swing.JDialog {
          jLabel5.setText(header.get(i).toString());
          }
          if(header.get(i).equals("Photo-Type") || header.get(i).equals("photo-type")){
-         jLabel6.setText(header.get(i).toString());  
+         jLabel6.setText(header.get(i).toString());
          }
          }
-     
+
          if(header.contains("subject") || header.contains("Subject")){
          jScrollPane1.setBounds(pos[k],62,158,192);
          jScrollPane1.setVisible(true);
@@ -171,7 +170,7 @@ public class SelectImage2 extends javax.swing.JDialog {
          jScrollPane4.setVisible(true);
          jLabel4.setBounds(lblpos[k],40,67,16);
          // jLabel4.setText(header.get(k).toString());
-         k++;  
+         k++;
          }
          if(header.contains("use") || header.contains("Use")){
          jScrollPane5.setBounds(pos[k],62,158,192);
@@ -293,7 +292,7 @@ public class SelectImage2 extends javax.swing.JDialog {
         } else if (k > 5) {
             this.setSize(1000, 537);
             jButton1.setBounds(501, 460, 60, 35);
-            jScrollPaneGroups.setSize(980, 280);            
+            jScrollPaneGroups.setSize(980, 280);
         }
         for (int j = 0; j < header.size(); j++) {
             if (j == 0) {
@@ -345,7 +344,7 @@ public class SelectImage2 extends javax.swing.JDialog {
         }
         return selection;
     }
-    
+
     public void calcTotalImage(JList hh, ArrayList header) {
         int total = 0;
         int j = 0;
@@ -532,7 +531,7 @@ public class SelectImage2 extends javax.swing.JDialog {
                             modelAddAlpha(currentModel, newData, numChecked, currentModel.getSize() - 1);
                         }
                     }
-                    
+
                 }
 
                 // Now that only the appropriate values are being shown, check to
@@ -561,7 +560,7 @@ public class SelectImage2 extends javax.swing.JDialog {
                         for (Object diffObj : diffResults) {
                             diff = (ArrayList) diffObj;
                             diffVals = diff.get(1).toString();
-                            diffMessage += (String) diff.get(0) + ": " + diffVals.substring(1, diffVals.length() - 1) + "\n";    
+                            diffMessage += (String) diff.get(0) + ": " + diffVals.substring(1, diffVals.length() - 1) + "\n";
                         }
                         JDialog diffDialog = new DiffDialog((Dialog) this, true, diffMessage);
                         diffDialog.setLocationRelativeTo(this);
@@ -624,7 +623,7 @@ public class SelectImage2 extends javax.swing.JDialog {
         groupList.setVisible(true);
         groupList.validate();
     }
-    
+
     private void LoadSubject(String header) {
         DefaultListModel listModel = new DefaultListModel();
         String[] subject = db.getValues(header);
@@ -735,37 +734,37 @@ public class SelectImage2 extends javax.swing.JDialog {
     }
     /*private void LoadSubject()
      {
-     DefaultListModel listModel = new DefaultListModel(); 
+     DefaultListModel listModel = new DefaultListModel();
      String[] subject = db.getValues("subject");
      for(int i = 0; i < subject.length; i++)
-     { 
-     listModel.addElement(new InstallData(subject[i]));  
-         
+     {
+     listModel.addElement(new InstallData(subject[i]));
+
      }
-     this.list1.setModel(listModel);  
+     this.list1.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list1.setCellRenderer(renderer);
      list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      CheckListener lst = new CheckListener(this,list1);
      list1.addMouseListener(lst);
-     list1.addKeyListener(lst); 
-        
+     list1.addKeyListener(lst);
+
      }
      private void LoadGroup()
      {
-     DefaultListModel listModel = new DefaultListModel(); 
+     DefaultListModel listModel = new DefaultListModel();
      String[] group = db.getValues("Group");
      for(int i = 0; i < group.length; i++)
      {
-     listModel.addElement(new InstallData(group[i]));  
+     listModel.addElement(new InstallData(group[i]));
      }
-     this.list2.setModel(listModel);  
+     this.list2.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list2.setCellRenderer(renderer);
      list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      CheckListener lst = new CheckListener(this,list2);
      list2.addMouseListener(lst);
-     list2.addKeyListener(lst); 
+     list2.addKeyListener(lst);
      }
      private void LoadOrigin()
      {
@@ -773,15 +772,15 @@ public class SelectImage2 extends javax.swing.JDialog {
      String[] origin = db.getValues("origin");
      for(int i = 0; i < origin.length; i++)
      {
-     listModel.addElement(new InstallData(origin[i]));  
+     listModel.addElement(new InstallData(origin[i]));
      }
-     this.list3.setModel(listModel);  
+     this.list3.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list3.setCellRenderer(renderer);
      list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      CheckListener lst = new CheckListener(this,list3);
      list3.addMouseListener(lst);
-     list3.addKeyListener(lst); 
+     list3.addKeyListener(lst);
      }
      private void LoadForm()
      {
@@ -789,15 +788,15 @@ public class SelectImage2 extends javax.swing.JDialog {
      String[] form = db.getValues("form");
      for(int i = 0; i < form.length; i++)
      {
-     listModel.addElement(new InstallData(form[i])); 
+     listModel.addElement(new InstallData(form[i]));
      }
-     this.list4.setModel(listModel);  
+     this.list4.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list4.setCellRenderer(renderer);
      list4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      CheckListener lst = new CheckListener(this,list4);
      list4.addMouseListener(lst);
-     list4.addKeyListener(lst); 
+     list4.addKeyListener(lst);
      }
      private void LoadUse()
      {
@@ -805,9 +804,9 @@ public class SelectImage2 extends javax.swing.JDialog {
      String[] use = db.getValues("use");
      for(int i = 0; i < use.length; i++)
      {
-     listModel.addElement(new InstallData(use[i]));  
+     listModel.addElement(new InstallData(use[i]));
      }
-     this.list5.setModel(listModel);  
+     this.list5.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list5.setCellRenderer(renderer);
      list5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -821,15 +820,15 @@ public class SelectImage2 extends javax.swing.JDialog {
      String[] phototype = db.getValues("Photo-Type");
      for(int i = 0; i < phototype.length; i++)
      {
-     listModel.addElement(new InstallData(phototype[i]));  
+     listModel.addElement(new InstallData(phototype[i]));
      }
-     this.list6.setModel(listModel);  
+     this.list6.setModel(listModel);
      CheckListCellRenderer renderer = new CheckListCellRenderer();
      list6.setCellRenderer(renderer);
      list6.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      CheckListener lst = new CheckListener(this,list6);
      list6.addMouseListener(lst);
-     list6.addKeyListener(lst); 
+     list6.addKeyListener(lst);
      }*/
 
     /**
@@ -1152,7 +1151,7 @@ public class SelectImage2 extends javax.swing.JDialog {
     private void extraListValueChanged(javax.swing.event.ListSelectionEvent evt, JList currList) {
         list1.getCellRenderer().getListCellRendererComponent(currList, currList.getSelectedValue(), currList.getSelectedIndex(), true, true);
     }
-    
+
     private void list1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list1ValueChanged
         // TODO add your handling code here:
         list1.getCellRenderer().getListCellRendererComponent(list1, list1.getSelectedValue(), list1.getSelectedIndex(), true, true);
@@ -1273,7 +1272,7 @@ public class SelectImage2 extends javax.swing.JDialog {
             }
             return total;
         }
-        
+
         protected void doCheck() {
             int min, max;
             int index = m_list.getSelectedIndex();
@@ -1283,9 +1282,9 @@ public class SelectImage2 extends javax.swing.JDialog {
             DefaultListModel model = (DefaultListModel) m_list.getModel();
             InstallData data = (InstallData) model.getElementAt(index);
             data.invertSelected();
-            
+
             model.remove(index);
-            
+
             if (data.m_selected) {
                 min = 0;
                 max = getCheckedCount(model) - 1;
@@ -1300,7 +1299,7 @@ public class SelectImage2 extends javax.swing.JDialog {
                 index = model.indexOf(data);
                 m_list.ensureIndexIsVisible(index);
             }
-            
+
             m_list.repaint();
         }
     }

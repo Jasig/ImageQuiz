@@ -38,11 +38,9 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Administrator
- * Modifications by ztesler, 08-2016
  */
 public class Configuration {
 
-    //static String OSType = "MAC";      //"MAC"  "PC" commented ztesler
     static String mDBPath = "DBPath.txt";
     public static String DataBaseName() {
         return "database.csv";
@@ -154,7 +152,7 @@ public class Configuration {
     public static String ApplicationPath() {
         File myFile = new File("");
         try {
-            if(!Utilities.IsWindows()) { //added ztesler
+            if(!Utilities.IsWindows()) {
             //if (OSType.compareToIgnoreCase("MAC") == 0) {
                 return myFile.getCanonicalPath() + "/..";
             } else {
@@ -172,7 +170,6 @@ public class Configuration {
          boolean success = (new File(path)).mkdirs();
     }
 
-    //commented 8/2016 ztesler
     /*public static String UserPath() {
         //if(OS == 0){
          JFileChooser fr = new JFileChooser();
@@ -188,7 +185,6 @@ public class Configuration {
 
     }*/
 
-    //commented 8/2016 ztesler
     /*public static String ApplicationName() {
          return "Visual Learning";
     }*/

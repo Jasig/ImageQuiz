@@ -310,7 +310,6 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 					Integer.parseInt(value.toString());
 				} catch (Exception e) {
 					Utilities.MessageDialog(this.jtable.getParent(), "Invalid Number");
-	                //JOptionPane.showMessageDialog(this.jtable.getParent(), "Invalid Number");
 					return;
 				}
 			} else if (((String) numberconstraints.elementAt(nCol))
@@ -324,7 +323,6 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 							BigDecimal.ROUND_HALF_UP)).toString();
 				} catch (Exception e) {
 					Utilities.MessageDialog(this.jtable.getParent(), "Invalid Number");
-	                //JOptionPane.showMessageDialog(this.jtable.getParent(), "Invalid Number");
 					return;
 				}
 
@@ -386,7 +384,6 @@ public class CheckBoxTable extends AbstractTableModel implements KeyListener {
 		int messageint = pos + 1;
 		if (messageint == 0) {
 			Utilities.MessageDialog(this.jtable.getParent(), "No rows selected");
-			//JOptionPane.showMessageDialog(this.jtable.getParent(), "No rows selected");
 			return null;
 		}
 

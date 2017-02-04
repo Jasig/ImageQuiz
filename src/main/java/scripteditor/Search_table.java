@@ -316,13 +316,11 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
             if((!ch1.isSelected()) && (!ch2.isSelected()))
             {
                 Utilities.MessageDialog(this, "Please select one of the check boxes.");
-                //JOptionPane.showMessageDialog(this, "Please select one of the check boxes.");
 
             }
              if((genus.isEmpty())&&(cName.isEmpty())) {
 
                  Utilities.MessageDialog(this, "Please enter values in the text box.");
-                 //JOptionPane.showMessageDialog(this,"Please enter values in the text box.");
              }
              else if(ch1.isSelected()&& !genus.isEmpty()) {
                  search=true;
@@ -391,11 +389,9 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
              if((!ch1.isSelected()) && (!ch2.isSelected()))
             {
                 Utilities.MessageDialog(this, "Please select one of the check boxes.");
-                //JOptionPane.showMessageDialog(this, "Please select one of the check boxes.");
 
             }else if((genus.isEmpty())&&(cName.isEmpty())) {
                 Utilities.MessageDialog(this, "Please enter values in  the text box.");
-                //JOptionPane.showMessageDialog(this,"Please enter values in  the text box.");
             }
              else if((!genus.isEmpty())&&(cName.isEmpty())) {
                  search=true;
@@ -510,11 +506,9 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
                 }else if(search==false)
                 {
                     Utilities.MessageDialog(this, "Cannot add taxa.");
-                    //JOptionPane.showMessageDialog(this,"Cannot add taxa.");
                 }else if(val.size()==0)
                 {
                     Utilities.MessageDialog(this, "Please make any selections to add taxa.");
-                    //JOptionPane.showMessageDialog(this,"Please make any selections to add taxa.");
                 }
 
                 else if((taxa.size()==0) && (search==true) &&(flag==true)){
@@ -537,10 +531,8 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
                  if(search==false)
                 {
                     Utilities.MessageDialog(this, "Cannot add taxa.");
-                    //JOptionPane.showMessageDialog(this,"Cannot add taxa.");
                 }else if((count==0)){
                     Utilities.MessageDialog(this, "Please make any selections to add taxa.");
-                    //JOptionPane.showMessageDialog(this,"Please make any selections to add taxa.");
                 }
                   else{
                        if(ch1.isSelected())
@@ -804,7 +796,6 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
 
                   jTable1.repaint();
                   Utilities.MessageDialog(this, "No matching item found.");
-                  //JOptionPane.showMessageDialog(this,"No matching item found.");
          }
         else
         {
@@ -1099,7 +1090,6 @@ public class Search_table extends javax.swing.JDialog implements ActionListener 
 
                   jTable1.repaint();
                   Utilities.MessageDialog(this, "No matching item found.");
-                  //JOptionPane.showMessageDialog(this, "No matching item found.");
         }
         else{
 

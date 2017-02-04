@@ -59,7 +59,6 @@ public class IQImageVerification {
 
         if(mSessionInfo.mTaxa.length < 2){
             Utilities.MessageDialog(mSessionInfo.mParentForm, "There must be more than one taxa selected for Image Verification.");
-            //JOptionPane.showMessageDialog(mSessionInfo.mParentForm, "There must be more than one taxa selected for Image Verification.");
             return;
         }
 

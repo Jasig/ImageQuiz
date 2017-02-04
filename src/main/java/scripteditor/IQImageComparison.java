@@ -101,7 +101,6 @@ public class IQImageComparison {
         // Checks to see if more than 2 taxa are selected
         if (mTaxa.length < 2) {
             Utilities.MessageDialog(mParent, "There must be more than one taxa selected for Image Comparison.");
-            //JOptionPane.showMessageDialog(mParent, "There must be more than one taxa selected for Image Comparison.");
 
             return;
         }

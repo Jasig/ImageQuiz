@@ -33,7 +33,7 @@ import java.util.Properties;
  *
  * @author Anurag
 
- * this class is currently obsolete, ztesler 08/2016
+ * this class is currently obsolete
  */
 public class PropertyFileReader {
 
