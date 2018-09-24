@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="saveimg">glyphicons_446_floppy_save.png</file>
+        <file alias="noimg">No_Image_Available.png</file>
+        <file alias="editimg">glyphicons_030_pencil.png</file>
+        <file alias="addimg">glyphicons_190_circle_plus.png</file>
+        <file alias="removeimg">glyphicons_191_circle_minus.png</file>
+        <file alias="logo">IL_logo.png</file>
+        <file alias="icon">icon.ico</file>
+    </qresource>
+</RCC>
