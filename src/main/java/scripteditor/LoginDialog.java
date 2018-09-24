@@ -45,38 +45,38 @@ public class LoginDialog extends javax.swing.JDialog {
     public String mUserName;
     public boolean closeMain = true;
     UserClass user;
-    String savedTaxaSetsPath = null;//added by anurag 
-    PropertyFileReader propertyFileReader = null;
+    String savedTaxaSetsPath = null;//added by anurag
+    //PropertyFileReader propertyFileReader = null;
     /** Creates new form LoginDialog */
     public LoginDialog(Component form, UserClass Uzer) {
         mForm = form;
         user = Uzer;
         initComponents();
-        
-        try {
-            propertyFileReader = new PropertyFileReader();
-            this.savedTaxaSetsPath = propertyFileReader.getPropertyValue("savedTaxaSetsFolderName");
+
+        /*try {
+            //propertyFileReader = new PropertyFileReader();
+            //this.savedTaxaSetsPath = propertyFileReader.getPropertyValue("savedTaxaSetsFolderName");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }*/
+
         //The following code was originally set from MainForm
         this.setModal(true);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
         this.requestFocus();
-        
+
         //Original Code.
         //In MainForm
 //        dlgLogin.setModal(true);
 //        dlgLogin.setLocationRelativeTo(this);
 //        dlgLogin.setVisible(true);
 //        dlgLogin.requestFocus();
-        
+
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -267,7 +267,7 @@ public class LoginDialog extends javax.swing.JDialog {
     private void tfCreateUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCreateUserKeyPressed
            int keyCode = evt.getKeyCode();
         // Login user if Enter is pressed!!
-         if( keyCode == KeyEvent.VK_ENTER) { 
+         if( keyCode == KeyEvent.VK_ENTER) {
                 createUser();
          }
     }//GEN-LAST:event_tfCreateUserKeyPressed
@@ -275,7 +275,7 @@ public class LoginDialog extends javax.swing.JDialog {
     private void btCreateUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btCreateUserKeyPressed
         int keyCode = evt.getKeyCode();
         // Login user if Enter is pressed!!
-         if( keyCode == KeyEvent.VK_ENTER) { 
+         if( keyCode == KeyEvent.VK_ENTER) {
                 createUser();
          }
     }//GEN-LAST:event_btCreateUserKeyPressed
@@ -283,7 +283,7 @@ public class LoginDialog extends javax.swing.JDialog {
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
          int keyCode = evt.getKeyCode();
         // Login user if Enter is pressed!!
-         if( keyCode == KeyEvent.VK_ENTER) { 
+         if( keyCode == KeyEvent.VK_ENTER) {
                 loginUser();
          }
     }//GEN-LAST:event_jButton1KeyPressed
@@ -291,13 +291,13 @@ public class LoginDialog extends javax.swing.JDialog {
     private void tfUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUserKeyPressed
          int keyCode = evt.getKeyCode();
         // Login user if Enter is pressed!!
-         if( keyCode == KeyEvent.VK_ENTER) { 
+         if( keyCode == KeyEvent.VK_ENTER) {
                 loginUser();
          }
     }//GEN-LAST:event_tfUserKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-  
+
     }//GEN-LAST:event_formKeyPressed
 
     private void btCreateUserMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCreateUserMouseReleased
@@ -308,20 +308,19 @@ public class LoginDialog extends javax.swing.JDialog {
         loginUser();
     }//GEN-LAST:event_jButton1MouseReleased
 
-    
-    
-    
+
+
+
     private void loginUser(){
          String response;
         response = user.login(tfUser.getText(), "NotRequired");//tfPassword.getPassword());
         if(response == "AccessGranted"){
-            //JOptionPane.showMessageDialog(mForm, "Login Successful! \n\r Welcome to Image Quiz " + tfUser.getText() + ".");
             mUserName = tfUser.getText();
             closeMain = false;
             this.hide();
         }
         else if(response == "FileNotFound"){
-             JOptionPane.showMessageDialog(mForm, "Your file was not found. If you do not have a file please create one \n\rby using the create new user box on the right.");
+            Utilities.MessageDialog(mForm, "Your file was not found. If you do not have a file please create one \n\rby using the create new user box on the right.");
              //tfPassword.setText("");
         }
         else if(response == "CantReadLine"){
@@ -329,55 +328,54 @@ public class LoginDialog extends javax.swing.JDialog {
             //File is corrupt!
         }
         else{
-            JOptionPane.showMessageDialog(mForm, "AccessDenied.");
-            //JOptionPane.showMessageDialog(mForm, "The password did not match the username! Please try the password again.");
+            Utilities.MessageDialog(mForm, "Access Denied.");
             //tfPassword.setText("");
             //AccessDenied. Invalid Password
         }
-            
-       
+
+
     }
-    
+
     private void createUser(){
          String response;
         if(tfCreateUser.getText().length() < 4){
-            JOptionPane.showMessageDialog(mForm, "Username must have a least four characters!");
+            Utilities.MessageDialog(mForm, "Username must have a least four characters!");
             tfCreateUser.setText("");
             //tfCreatePassword.setText("");
         } //else if(tfCreatePassword.getPassword().length < 4) {
-          //  JOptionPane.showMessageDialog(mForm, "Password must have a least four characters!");
           //  tfCreatePassword.setText("");
-       // } 
+       // }
         else{
             response = user.createNewUser(tfCreateUser.getText(), "Not Required");//tfCreatePassword.getPassword());
             if(response == "UserAlreadyExists"){
-                JOptionPane.showMessageDialog(mForm, "The username already exists. Please use another username.");
+                Utilities.MessageDialog(mForm, "The username already exists. Please use another username.");
                 tfCreateUser.setText("");
                 //tfCreatePassword.setText("");
             } else if(response == "CanNotCreateUser"){
-                JOptionPane.showMessageDialog(mForm, "Can not create a new user! Please make sure you have \n\rwrite permissions on the current drive.");
+                Utilities.MessageDialog(mForm, "Can not create a new user! Please make sure you have \n\rwrite permissions on the current drive.");
                 //tfCreatePassword.setText("");
             } else{
                 MYFolderCheck();
-                JOptionPane.showMessageDialog(mForm, "Username (" + tfCreateUser.getText() + ") has been created. Please remember your \n\rnew Username.");// and Password.");
+                Utilities.MessageDialog(mForm, "Username (" + tfCreateUser.getText() + ") has been created. Please remember your \n\rnew Username.");
                 mUserName = tfCreateUser.getText();
                 closeMain = false;
                 this.hide();
             }
         }
 
-        
+
     }
-   
+
     private void MYFolderCheck() {
-        File toWork = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
+        File toWork = new File(Configuration.ApplicationPath() + "/Saved Taxa Sets");
+        //File toWork = new File(Configuration.ApplicationPath() + "/" + savedTaxaSetsPath);
         if (toWork.exists() == false) {
             toWork.mkdir();
         }
     }
-    
+
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-    
+
 // TODO add your handling code here:
     }//GEN-LAST:event_formMouseReleased
 
@@ -385,9 +383,9 @@ public class LoginDialog extends javax.swing.JDialog {
         MYFolderCheck();
         this.setTitle(ConfigFileReader.getProjectName());
     }//GEN-LAST:event_formWindowOpened
-    
-  
-    
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateUser;
     private javax.swing.JButton jButton1;
@@ -401,5 +399,5 @@ public class LoginDialog extends javax.swing.JDialog {
     private javax.swing.JTextField tfCreateUser;
     private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
-    
+
 }

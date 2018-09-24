@@ -40,10 +40,10 @@ import java.text.DecimalFormat;
 
 
 public class IQImageComparison {
-    
+
 //*********************************************************
 //          Member Variables
-    
+
     String[][] mResults;
     ImageCollection myCollection;
     int mMode;
@@ -67,11 +67,11 @@ public class IQImageComparison {
      boolean fontItalic=false;//Added by preethy on 21-04-2012
 //
 //**********************************************************
-    
+
     /** Creates a new instance of ImageComparison */
     public IQImageComparison(Component parentForm, JLabel displayLabel, String[][] fileNames, double delay, String taxLevel,
             String[] taxa, JPanel p, ActionListener al, String name, boolean test_mode, ImageCollection ic, ProgressClass pc) {
-        
+
         mResults = fileNames;
         mPic     = displayLabel;
         mParent  = parentForm;
@@ -87,30 +87,30 @@ public class IQImageComparison {
         myCollection.sortForComparisons();
         mScaler = new ImageScaler();
          if(mTaxLevel.equals("Genus")||(mTaxLevel.equals("Species"))){
-            fontItalic=true; 
+            fontItalic=true;
          }
         Main();
         mScaler = null;
-        
+
     }
-    
-    
+
+
     // Main loop for an Image Comparison Run!
     private void Main() {
 
         // Checks to see if more than 2 taxa are selected
         if (mTaxa.length < 2) {
-            JOptionPane.showMessageDialog(mParent, "There must be more than one taxa selected for Image Comparison.");
-          
+            Utilities.MessageDialog(mParent, "There must be more than one taxa selected for Image Comparison.");
+
             return;
         }
-        
+
 
         if (mTestMode)
             mGrade = GradeImageComparisonFactory.GetGradeInstance(GradeImageComparisonFactory.ImageComparisonTest, new QuizResultClass(6, mResults.length, SessionInfo.SpellingValue, mDelay),fontItalic);
         else
             mGrade = GradeImageComparisonFactory.GetGradeInstance(GradeImageComparisonFactory.ImageComparisonQuiz, new QuizResultClass(3, mResults.length, SessionInfo.SpellingValue, mDelay),fontItalic);
-       
+
         //Display 2 imagees side by side and compare
         // Move leftPictureBox to left and dynamically create another pictureBox
         // for the right image to compare.
@@ -133,7 +133,7 @@ public class IQImageComparison {
         rightPictureBox.setHorizontalAlignment(JLabel.LEFT);
         rightPictureBox.setVisible(true);
         mPanel.validate();
-      
+
         Image left = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), pbWidth, pbHeight, mPic);
         Image right;
         leftAnswer = parseString(myCollection.getImageName());
@@ -143,13 +143,13 @@ public class IQImageComparison {
         if ((int) (lastIndex % 2) == 1) {
             lastIndex -= 1;
         }
-               
+
         for (int i = 0; i < lastIndex; i += 2) {
             mGrade.getGradeInstance().BeginQuestion();
             mPanel.setVisible(false);
             //Get Second Image (right-side)
             retVal = myCollection.MoveNext();
-          
+
             right = myCollection.getCurrentImage().getImage();
             right = ImageScaler.VerifyImageSize(myCollection.getCurrentImage().getImage(), pbWidth, pbHeight, mPic);
             rightAnswer = parseString(myCollection.getImageName());
@@ -157,7 +157,7 @@ public class IQImageComparison {
             rightPictureBox.setIcon(new ImageIcon(right));
 
             while (true) {
-                
+
                 ////////////////////////////////////////////////
                 //////  FIX IMAGE DISPLAY FOR FIRST IMAGE //////
                 answer = null;
@@ -201,7 +201,7 @@ public class IQImageComparison {
                    if(mGrade.Grade(answer, leftAnswer, rightAnswer,mTaxLevel)==true){
                     break; }     //Go to next question.
                 } else {
-                    
+
                     if (mGrade.Grade(answer, leftAnswer, rightAnswer,mTaxLevel) == true) {
                         break;  //Go to next question
                     }
@@ -231,14 +231,14 @@ public class IQImageComparison {
         mPanel.invalidate();
         mProgress.StoreResult(mGrade.getGradeInstance().getQuizResult(), String.valueOf(DecimalFormat.getPercentInstance().format(mGrade.getGradeInstance().NumberOfRightAnswers()/(double)(myCollection.NumberOfImages()/2))),fontItalic); // Adds the relust to the progress
     }
-    
+
     public void SaveResult(){
         ScriptResult rs;
         if(mTestMode){
           rs = new ScriptResult("Test-Image Comparison", mTaxLevel, mTaxa, mUserName,
                     mGrade.getGradeInstance().FinalGrade(), "n/a", "n/a", mGrade.getGradeInstance().TotalQuestions(),
                     myCollection.NumberOfImages()/ 2, null);
-      
+
         } else{
              rs = new ScriptResult("Quiz-Image Comparison", mTaxLevel, mTaxa, mUserName,
                     mGrade.getGradeInstance().FinalGrade(),
@@ -250,14 +250,14 @@ public class IQImageComparison {
         rs.writeResults(false);
     }
 
-    
+
     // This function will take a string and take off all begining words and return the last
     //example takes (Hello how are you) and returns (you)
     private String parseString(String name){
         // Don't need tofix string in Comparison'
         return name.trim();
     }
-    
+
     // If paused this function will stop the progress of the test or quiz
     // until mPaused or Running is set to false.
     private void PauseAndRun(){
@@ -265,9 +265,9 @@ public class IQImageComparison {
             try{
                 Thread.sleep(100);
             } catch(InterruptedException e){}
-        } 
+        }
     }
-    
+
     // A basic delay function. Pass in the amount of seconds to pause.
     private void JCDelay(double de) {
         de = de * 1000;
@@ -279,7 +279,7 @@ public class IQImageComparison {
             } catch(InterruptedException e){}
         }
     }
-    
+
     // Shows the try again dialog box to ask if the user would like to try again.
     public static int ShowTryAgainDialog(){
         dlgTryAgain dlg = new dlgTryAgain();
@@ -295,5 +295,5 @@ public class IQImageComparison {
         return tf.getResponse();
     }
      /***/
-    
+
 }

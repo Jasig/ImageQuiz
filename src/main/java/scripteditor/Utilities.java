@@ -27,20 +27,29 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author bpurcell
  */
 public class Utilities {
 
-    static String OSType = "MAC";      //"MAC"  "PC"
+    //static String OSType = "MAC";      //"MAC"  "PC"
+
+    public static boolean IsWindows() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return os.contains("win");
+    }
 
     public static void OpenExternalFile(String path) throws IOException {
-        String cmd = "";
-        if (OSType.compareToIgnoreCase("MAC") == 0) {
-            cmd = "open ".concat(path);
+        String cmd[];
+        //if (OSType.compareToIgnoreCase("MAC") == 0) {
+        if(!IsWindows()) {
+            cmd = new String[] {"open", path};
         } else {
-            cmd = "cmd /c start ".concat(path);
+            cmd = new String[] {"cmd", "/c", "start \"\" \"" + path + "\""};
         }
 
         if (new File(path).exists() == false) {
@@ -51,4 +60,18 @@ public class Utilities {
         Runtime.getRuntime().exec(cmd);
 
     }
+
+    public static void MessageDialog(Component component, String message) {
+        ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
+        String appDisplayName = ConfigFileReader.getProjectName();
+
+        JOptionPane.showMessageDialog(component, message, appDisplayName, JOptionPane.INFORMATION_MESSAGE, dialogIcon);
+    }
+
+    public static int ConfirmDialog(Component component, String message, String title) {
+        ImageIcon dialogIcon = new ImageIcon(Configuration.ApplicationPath() + "/Graphics/icon.png");
+
+        return JOptionPane.showConfirmDialog(component, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, dialogIcon);
+    }
+
 }

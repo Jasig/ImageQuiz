@@ -70,8 +70,8 @@ public class SelectImage1 extends javax.swing.JDialog {
         header=db.GetHeader();
         Object[] list;
        list=new Object[]{"jLabel1","jLabel2","jLabel3","jLabel4","jLabel5","jLabel6"};
-       
-     
+
+
         LoadSubject();
         LoadGroup();
         LoadOrigin();
@@ -82,10 +82,10 @@ public class SelectImage1 extends javax.swing.JDialog {
             label_advanced_optns.setText("Advanced Options set, number of images selected: "+adv_options);
             label_advanced_optns.setForeground(Color.red);
         }
-        
-         
-        
-          
+
+
+
+
    }
  public void calcTotalImage(JList hh) {
  ListModel model = hh.getModel();
@@ -102,7 +102,7 @@ public class SelectImage1 extends javax.swing.JDialog {
  if(name.equals("subject"))
     {
        db.setSubject(selection);
-            
+
     }
      if(name.equals("group"))
     {
@@ -120,11 +120,11 @@ public class SelectImage1 extends javax.swing.JDialog {
     {
        db.setUse(selection);
     }
-       
+
    if(name.equals("phototype"))
    {
      db.setPhototype(selection);
-   }  
+   }
 // total=db.GetImageCount(name);
  imageCount=0;
  imageCount=total;
@@ -133,45 +133,45 @@ if(total==0)
 {
 count.setText(""+total);
 count.setForeground(Color.red);
-        
+
 }
 else
- count.setForeground(Color.BLACK); 
- count.setText(""+total);   
+ count.setForeground(Color.BLACK);
+ count.setText(""+total);
 }
   private void LoadSubject()
     {
-        DefaultListModel listModel = new DefaultListModel(); 
+        DefaultListModel listModel = new DefaultListModel();
         String[] subject = db.getValues("subject");
         for(int i = 0; i < subject.length; i++)
-        { 
-          listModel.addElement(new InstallData(subject[i]));  
-         
+        {
+          listModel.addElement(new InstallData(subject[i]));
+
         }
-        this.list1.setModel(listModel);  
+        this.list1.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list1.setCellRenderer(renderer);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         CheckListener lst = new CheckListener(this,list1);
         list1.addMouseListener(lst);
-        list1.addKeyListener(lst); 
-        
+        list1.addKeyListener(lst);
+
     }
     private void LoadGroup()
     {
-        DefaultListModel listModel = new DefaultListModel(); 
+        DefaultListModel listModel = new DefaultListModel();
         String[] group = db.getValues("Group");
         for(int i = 0; i < group.length; i++)
         {
-            listModel.addElement(new InstallData(group[i]));  
+            listModel.addElement(new InstallData(group[i]));
         }
-        this.list2.setModel(listModel);  
+        this.list2.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list2.setCellRenderer(renderer);
         list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         CheckListener lst = new CheckListener(this,list2);
         list2.addMouseListener(lst);
-        list2.addKeyListener(lst); 
+        list2.addKeyListener(lst);
     }
      private void LoadOrigin()
     {
@@ -179,15 +179,15 @@ else
         String[] origin = db.getValues("origin");
         for(int i = 0; i < origin.length; i++)
         {
-              listModel.addElement(new InstallData(origin[i]));  
+              listModel.addElement(new InstallData(origin[i]));
         }
-        this.list3.setModel(listModel);  
+        this.list3.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list3.setCellRenderer(renderer);
         list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         CheckListener lst = new CheckListener(this,list3);
         list3.addMouseListener(lst);
-        list3.addKeyListener(lst); 
+        list3.addKeyListener(lst);
      }
      private void LoadForm()
     {
@@ -195,15 +195,15 @@ else
         String[] form = db.getValues("form");
         for(int i = 0; i < form.length; i++)
         {
-          listModel.addElement(new InstallData(form[i])); 
+          listModel.addElement(new InstallData(form[i]));
         }
-        this.list4.setModel(listModel);  
+        this.list4.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list4.setCellRenderer(renderer);
         list4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         CheckListener lst = new CheckListener(this,list4);
         list4.addMouseListener(lst);
-        list4.addKeyListener(lst); 
+        list4.addKeyListener(lst);
      }
      private void LoadUse()
     {
@@ -211,9 +211,9 @@ else
         String[] use = db.getValues("use");
         for(int i = 0; i < use.length; i++)
         {
-           listModel.addElement(new InstallData(use[i]));  
+           listModel.addElement(new InstallData(use[i]));
         }
-        this.list5.setModel(listModel);  
+        this.list5.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list5.setCellRenderer(renderer);
         list5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -227,17 +227,17 @@ else
         String[] phototype = db.getValues("Photo-Type");
         for(int i = 0; i < phototype.length; i++)
         {
-           listModel.addElement(new InstallData(phototype[i]));  
+           listModel.addElement(new InstallData(phototype[i]));
         }
-        this.list6.setModel(listModel);  
+        this.list6.setModel(listModel);
         CheckListCellRenderer renderer = new CheckListCellRenderer();
         list6.setCellRenderer(renderer);
         list6.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         CheckListener lst = new CheckListener(this,list6);
         list6.addMouseListener(lst);
-        list6.addKeyListener(lst); 
+        list6.addKeyListener(lst);
     }
-   
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -513,7 +513,7 @@ else
         // TODO add your handling code here:
         if(imageCount==0)
         {
-            JOptionPane.showMessageDialog(this, "There are currently no images selected.");
+            Utilities.MessageDialog(this, "There are currently no images selected.");
             return;
         }
         else
@@ -528,30 +528,30 @@ else
             imagecountLabel.setText("Total number of images selected: ");
             count.setText("0");
             count.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
+            Utilities.MessageDialog(this, "There are currently no images selected. \n Press escape to close the dialogue box without saving your selections.");
             this.setVisible(false);
             return;
-           
+
         }else if((!ch1.isSelected()) && (!ch2.isSelected()) && (!ch3.isSelected()) && (!ch4.isSelected()))
         {
-            JOptionPane.showMessageDialog(this, "Please select one of the check box.");
-                      
-        }      
+            Utilities.MessageDialog(this, "Please select one of the check box.");
+
+        }
         else{
             select=true;
-            
+
             this.setVisible(false);
-            
+
              db.getGroupFileNames(db.selectedRow, getTaxaLevel(), false, 0);
         }
-        
+
     }//GEN-LAST:event_jButton1MouseReleased
-public static void addEscapeListener(final JDialog dialog) { 
-    ActionListener escListener = new ActionListener() { 
-        @Override       
-        public void actionPerformed(ActionEvent e) { 
+public static void addEscapeListener(final JDialog dialog) {
+    ActionListener escListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
             esc=true;
-            dialog.setVisible(false);        }    }; 
+            dialog.setVisible(false);        }    };
     dialog.getRootPane().registerKeyboardAction(escListener,KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),JComponent.WHEN_IN_FOCUSED_WINDOW);
 }
  public String getTaxaLevel(){
@@ -561,9 +561,9 @@ public static void addEscapeListener(final JDialog dialog) {
             return "Genus";
         else if(ch3.isSelected())
             return "Species";
-        else 
+        else
             return "Common Name";
-    }    
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -590,31 +590,31 @@ public static void addEscapeListener(final JDialog dialog) {
 
     private void list2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list2ValueChanged
         // TODO add your handling code here:
-        list2.getCellRenderer().getListCellRendererComponent(list1,list2.getSelectedValue(),list1.getSelectedIndex(),true,true); 
+        list2.getCellRenderer().getListCellRendererComponent(list1,list2.getSelectedValue(),list1.getSelectedIndex(),true,true);
     }//GEN-LAST:event_list2ValueChanged
 
     private void list3ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list3ValueChanged
         // TODO add your handling code here:
-         list2.getCellRenderer().getListCellRendererComponent(list1,list3.getSelectedValue(),list1.getSelectedIndex(),true,true); 
+         list2.getCellRenderer().getListCellRendererComponent(list1,list3.getSelectedValue(),list1.getSelectedIndex(),true,true);
     }//GEN-LAST:event_list3ValueChanged
 
     private void list4ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list4ValueChanged
         // TODO add your handling code here:
-         list2.getCellRenderer().getListCellRendererComponent(list1,list4.getSelectedValue(),list1.getSelectedIndex(),true,true); 
+         list2.getCellRenderer().getListCellRendererComponent(list1,list4.getSelectedValue(),list1.getSelectedIndex(),true,true);
     }//GEN-LAST:event_list4ValueChanged
 
     private void list5ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list5ValueChanged
         // TODO add your handling code here:
-         
-         list2.getCellRenderer().getListCellRendererComponent(list1,list5.getSelectedValue(),list1.getSelectedIndex(),true,true); 
+
+         list2.getCellRenderer().getListCellRendererComponent(list1,list5.getSelectedValue(),list1.getSelectedIndex(),true,true);
     }//GEN-LAST:event_list5ValueChanged
 
     private void list6ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list6ValueChanged
         // TODO add your handling code here:
-        
-         list2.getCellRenderer().getListCellRendererComponent(list1,list6.getSelectedValue(),list1.getSelectedIndex(),true,true); 
+
+         list2.getCellRenderer().getListCellRendererComponent(list1,list6.getSelectedValue(),list1.getSelectedIndex(),true,true);
     }//GEN-LAST:event_list6ValueChanged
-   
+
 class CheckListCellRenderer extends JCheckBox
 implements ListCellRenderer
 {
@@ -629,8 +629,8 @@ public Component getListCellRendererComponent(JList list,
 Object value, int index, boolean isSelected, boolean cellHasFocus)
 {
   //  setSelected(isSelected);
- 
- 
+
+
 setText(value.toString());
 setBackground(isSelected ? list.getSelectionBackground() :
 list.getBackground());
@@ -679,7 +679,7 @@ getElementAt(index);
 data.invertSelected();
 m_list.repaint();
 }
-    } 
+    }
  class InstallData
 {
 protected String m_name;
@@ -696,7 +696,7 @@ public void invertSelected() { m_selected = !m_selected; }
 public boolean isSelected() { return m_selected; }
 public String toString() { return m_name; }
 }
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ch1;
@@ -727,5 +727,5 @@ public String toString() { return m_name; }
     private javax.swing.JList list5;
     private javax.swing.JList list6;
     // End of variables declaration//GEN-END:variables
-    
+
 }

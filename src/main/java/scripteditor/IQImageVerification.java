@@ -49,21 +49,21 @@ public class IQImageVerification {
         mSessionInfo = session;
         mScaler = new ImageScaler();
         italic=fontItalic;
-        ImageVerification();   
+        ImageVerification();
         mScaler = null;
-       
-        
+
+
     }
-    
+
     private void ImageVerification(){
-        
+
         if(mSessionInfo.mTaxa.length < 2){
-            JOptionPane.showMessageDialog(mSessionInfo.mParentForm, "There must be more than one taxa selected for Image Verification.");
+            Utilities.MessageDialog(mSessionInfo.mParentForm, "There must be more than one taxa selected for Image Verification.");
             return;
         }
 
-        
-       
+
+
 //        //  Clear point-accumulating variables if not in testmode
 //        if (!mSessionInfo.mIsTest) {
 //            mGrade = new GradeImageVerificationQuiz(new QuizResultClass(4));
@@ -96,14 +96,14 @@ public class IQImageVerification {
         String answer; // response from user
         dlgResponse.setLocationRelativeTo(mSessionInfo.mParentForm);
         AddNameLabel();
-        
+
         mNameLabel.setVisible(false);
         ImageIcon tempIcon = new ImageIcon(image);
         for(int i = 0; i < mSessionInfo.mFileNames.length; i++){
             ////  Use the mNameLabel as the fixation point
             /// Never set mSessionInfo.mDisplayLabel to null. Always have image loaded.
             /// Just set visable or not
-            
+
              mGrade.getGradeInstance().BeginQuestion();
              while(true){
                 answer = null;
@@ -116,7 +116,7 @@ public class IQImageVerification {
                 mNameLabel.setVisible(true);
                 JCDelay(1); // name shown for only 1 second!
                 mNameLabel.setVisible(false);
-                
+
                 if(!Running){
                     break;
                 }
@@ -137,21 +137,21 @@ public class IQImageVerification {
                 }
              }
             }
-            
+
             if (!Running) {
                 mGrade.getGradeInstance().QuitEarly();
                 break;
             }
-            
+
             // Update progress class.
-            
+
             //
             mSessionInfo.mImageCollection.MoveNext();
             image =  ImageScaler.VerifyImageSize(mSessionInfo.mImageCollection.getCurrentImage().getImage(), mSessionInfo.mDisplayLabel.getWidth(), mSessionInfo.mDisplayLabel.getHeight(), mSessionInfo.mDisplayLabel);
             tempIcon = new ImageIcon(image);
             realName = getParsedName(mSessionInfo.mImageCollection.getImageName());
             randomName = getParsedName(mSessionInfo.mTaxa[generator.nextInt(seed)]);
-            
+
             while(realName.compareTo(randomName) == 0){
                 randomName = getParsedName(mSessionInfo.mTaxa[generator.nextInt(seed)]);
             }
@@ -161,7 +161,7 @@ public class IQImageVerification {
         }
         mSessionInfo.mProgress.StoreResult(mGrade.getGradeInstance().getQuizResult(), String.valueOf(DecimalFormat.getPercentInstance().format(mGrade.getGradeInstance().NumberOfRightAnswers()/(double)mSessionInfo.mImageCollection.NumberOfImages())),italic); // Adds the result to the progress
     }
-    
+
 //    public void SaveResult() {
 //        if(mSessionInfo.mIsTest){
 //            Results rs = new Results("Test", "Image Verification", mSessionInfo.mTaxaLevel, mSessionInfo.mTaxa, mSessionInfo.mUserName, String.valueOf(mRightAnswers) + "/" + String.valueOf(mTotal), mDelay, mSessionInfo.mFixationTime);
@@ -191,9 +191,9 @@ public class IQImageVerification {
     private void AddNameLabel(){
         mNameLabel = new JLabel();
         mNameLabel.setHorizontalAlignment(JLabel.CENTER);
-       
+
         if(italic){
-           mNameLabel.setFont(new Font("Tahoma", Font.ITALIC, 30));  
+           mNameLabel.setFont(new Font("Tahoma", Font.ITALIC, 30));
         }else{
         mNameLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
         }
@@ -205,14 +205,14 @@ public class IQImageVerification {
 
     private String getParsedName(String temp){
         int index = 0;
-        
+
         if(mSessionInfo.mTaxaLevel.compareTo("Family") != 0){
             index = temp.indexOf(' ');
             temp = temp.substring(index + 1, temp.length());
         }
         return temp;
     }
-    
+
     private void JCDelay(double de) {
         de = de * 1000;
         double startTime = System.currentTimeMillis();
@@ -229,7 +229,7 @@ public class IQImageVerification {
         JCDelay(mSessionInfo.mFixationTime);
         mSessionInfo.mDisplayLabel.setText("");
     }
-    
+
     public static int ShowTryAgainDialog(){
         dlgTryAgain dlg = new dlgTryAgain();
         dlg.setLocationRelativeTo(mSessionInfo.mParentForm);
@@ -244,6 +244,6 @@ public class IQImageVerification {
         return tf.getResponse();
     }
      /***/
-    
-    
+
+
 }

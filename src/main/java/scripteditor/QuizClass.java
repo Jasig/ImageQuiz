@@ -59,7 +59,7 @@ public class QuizClass extends Thread {
         mSpellVal = spell;
         mForm=obj;//Added by preethy on 28-01-2012
          if(mForm.taxonomicLevel.equals("Genus")||(mForm.taxonomicLevel.equals("Species"))){
-            fontItalic=true; 
+            fontItalic=true;
          }
         taxonomicLevel= mForm.taxonomicLevel;
     }
@@ -80,18 +80,18 @@ public class QuizClass extends Thread {
         String currentDirectory = Configuration.ApplicationPath() + "/images";
       //  String currentDirectory = Configuration.UserPath() + "/images";
         String[] info = new String[mSessionInfo.mFileNames.length];
-          
+
         for (int i = 0; i < info.length; i++) {
             info[i] = mSessionInfo.mFileNames[i][0] + ";" + mSessionInfo.mFileNames[i][1]; // Concats example ( 01332.jpg;Acer )
-         
+
         }
         try{ //Added by preethy 0n 28-01-2012
         mSessionInfo.mImageCollection = new ImageCollection(info, currentDirectory, true);
         mSessionInfo.mImageCollection.start();
-       
+
 //        }
         switch (mMode) {
-           
+
             case 1:
                 //  if(mScriptMode){
                 //     ScriptImageNaming(true);
@@ -112,7 +112,7 @@ public class QuizClass extends Thread {
                 LaunchImageVerification();
                 break;
             default:
-                
+
             //
         }//end switch
         mSessionInfo.mImageCollection.quit();
@@ -122,18 +122,18 @@ public class QuizClass extends Thread {
         catch(Exception e){
             if(info.length>0)
             {
-                
-                JOptionPane.showMessageDialog(mSessionInfo.mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
+
+                Utilities.MessageDialog(mSessionInfo.mPanel, "Images specified in the database are missing in images folder. Add images to continue.");
               mForm.showMenuButtons();
             }
-            
+
         }
         /**/
     }//end StartQuiz
 
     private void ImageNaming(boolean showPrompt) {
         ImageNamingQuiz2 quiz = new ImageNamingQuiz2(mSessionInfo, mMode, mScriptMode,taxonomicLevel);
-          
+
       //  ImageNamingQuiz quiz=new ImageNamingQuiz( mSessionInfo, mMode, mScriptMode);//Commented by preethy on 19-01-2012
         if(showPrompt)
             quiz.RunWithPrompt();
@@ -153,7 +153,7 @@ public class QuizClass extends Thread {
             ic = new IQImageComparison(mSessionInfo.mParentForm, mSessionInfo.mDisplayLabel, mSessionInfo.mFileNames, mSessionInfo.mDelay,
                     mSessionInfo.mTaxaLevel, mSessionInfo.mTaxa, mSessionInfo.mPanel, mSessionInfo.mCallback, mSessionInfo.mUserName, false,
                     mSessionInfo.mImageCollection, mSessionInfo.mProgress);
-           
+
         }
         if(mSessionInfo.mTaxa.length > 1 ){
            ic.SaveResult();
@@ -173,8 +173,8 @@ public class QuizClass extends Thread {
         if(mSessionInfo.mTaxa.length > 1 ){
              iv.SaveResult();
         }
-       
+
 
     }
-  
+
 }

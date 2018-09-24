@@ -46,7 +46,7 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
     String mTaxaLevel;
     Clipboard clip;
     StringSelection mySelection = new StringSelection("");
-    
+
     public boolean mRunning = true;
     public boolean close=false;//Added by preethy on 28-01-2012;
      public boolean no=false;//Added by preethy on 28-01-2012;
@@ -61,18 +61,18 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
         } catch (IOException ex) {
             Logger.getLogger(QuizResponseDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
          setIconImage(image);
        this.addWindowListener(EXIT_ON_CLOSE);
         this.setModal(true);
         if(comp == true){
-             lbMessage.setText("Same " + taxaLevel + "?" + " (Y/N)");      
+             lbMessage.setText("Same " + taxaLevel + "?" + " (Y/N)");
         }
         else
             lbMessage.setText("Enter " + taxaLevel + ":");
-  
+
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -169,32 +169,32 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-      
+
         ok();
         //close=true;
        // stop();
       //addWindowListener(0);
         /// TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-       
+
         stop();
     }//GEN-LAST:event_jButton1KeyPressed
 
     private void btOKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btOKKeyPressed
-       
+
         ok();
     }//GEN-LAST:event_btOKKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         tfResponse.requestFocus();
         try {
-         
+
             clip = Toolkit.getDefaultToolkit().getSystemClipboard();
         } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(this, "Problem");
+            Utilities.MessageDialog(this, "Problem");
         }
         clip.setContents(mySelection, mySelection);// TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
@@ -213,39 +213,39 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
             btOKMouseReleased(null);
         }
     }//GEN-LAST:event_tfResponseKeyPressed
-    
+
     public String getResponse(){
-        
+
         return mResponse;
     }
     public void resetResponse(){
         mResponse = "";
     }
     public void forCloseResponse(){
-       
+
         mResponse = null;
     }
     public void stop(){
-         int ret = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Quit?", JOptionPane.YES_NO_OPTION);
+        int ret = Utilities.ConfirmDialog(this, "Are you sure you want to quit?", "Quit?");
     if(ret == JOptionPane.YES_OPTION)
     {
         mRunning = false;
         this.hide();
-        
+
     }else{
         no=true;
         this.show();
     }
     }
-    
+
     public void ok(){
         mResponse = tfResponse.getText();
         this.hide();
         tfResponse.setText("");
     }
-    
 
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btOK;
     private javax.swing.JButton jButton1;
@@ -253,13 +253,13 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
     private javax.swing.JTextField tfResponse;
     // End of variables declaration//GEN-END:variables
 
-    private void addWindowListener(int param) 
+    private void addWindowListener(int param)
     {
 
-      if(param == 0)  
+      if(param == 0)
       {
-        
-          int ret = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Quit?", JOptionPane.YES_NO_OPTION);
+
+          int ret = Utilities.ConfirmDialog(this, "Are you sure you want to quit?", "Quit?");
         if(ret == JOptionPane.YES_OPTION)
         {
             mRunning = false;
@@ -267,11 +267,11 @@ public class QuizResponseDialog extends javax.swing.JDialog   {
         }
         else
         {
- 
+
         }
       }
     }
 
 
- 
+
 }

@@ -40,10 +40,10 @@ import javax.swing.KeyStroke;
  *
  * @author  Preethy
  * This dialog box is used to select species based on family names.
- * 
+ *
  */
 public class SelectSpecies extends javax.swing.JDialog {
-    
+
     String mTaxaLevel;
     DataBaseDriver db;
     ArrayList families = new ArrayList();
@@ -53,17 +53,17 @@ public class SelectSpecies extends javax.swing.JDialog {
      public boolean CommonNames=false;
      public static boolean esc=false;
      String [] genus;
-    
+
       String[][] fileNames;
       int adv_options=0;
      public SelectSpecies(DataBaseDriver db_driver,int maxImages){
-            
+
         initComponents();//two hidden list boxes list3 and listSelections
         addEscapeListener(this);
         this.list1.setMultipleMode(true);
         LoadFamilies();
         adv_options=maxImages;
-       
+
         if(adv_options>0){
             label_advanced_optns.setText("Advanced Options set, number of images selected: "+adv_options);
             label_advanced_optns.setForeground(Color.red);
@@ -76,12 +76,12 @@ public class SelectSpecies extends javax.swing.JDialog {
         for(int i = 0; i < families.length; i++)
             list1.add(families[i]);
     }
-   
+
     private String[] LoadGenus(String[] family)
     {
         DataBaseDriver db = new DataBaseDriver(Configuration.DataBaseName());
         String[] genus = db.getGenus2(family);
-      
+
         for(int i = 0; i < genus.length; i++)
         fm=db.fm;
         return genus;
@@ -96,7 +96,7 @@ public class SelectSpecies extends javax.swing.JDialog {
         if(ch2.isSelected())
         {
            CommonNames=true;
-           s = db.getCommonName2(genus);  
+           s = db.getCommonName2(genus);
         }
         gen=db.gen;
         list3.removeAll();
@@ -106,16 +106,16 @@ public class SelectSpecies extends javax.swing.JDialog {
     public String[] getItems()
     {
         String[] items = listSelections.getItems();
-       
+
         return items;//return selected taxa
     }
     public String getTaxaLevel(){
         if(ch1.isSelected())
             return "Species";
-         else 
+         else
             return "Common Name";
     }
-   
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -293,11 +293,11 @@ public class SelectSpecies extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void ch1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ch1MouseClicked
         // TODO add your handling code here:
     //  String[] mTaxa;
-     // String taxonomicLevel; 
+     // String taxonomicLevel;
        if(ch1.isSelected())
         {
           list3.removeAll();
@@ -315,7 +315,7 @@ public class SelectSpecies extends javax.swing.JDialog {
     private void ch2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ch2MouseClicked
         // TODO add your handling code here:
     //  String[] mTaxa;
-    //  String taxonomicLevel; 
+    //  String taxonomicLevel;
        if(ch2.isSelected())
         {
          list3.removeAll();
@@ -328,60 +328,60 @@ public class SelectSpecies extends javax.swing.JDialog {
       // fileNames=db.getFileNames(taxonomicLevel, mTaxa, false, 0);
       // image_count.setText("Total number of images selected :"+fileNames.length);
       // image_count.setForeground(Color.red);
-       
+
     }//GEN-LAST:event_ch2MouseClicked
 
     private void ch1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ch1ItemStateChanged
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_ch1ItemStateChanged
 
     private void list1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseReleased
         // TODO add your handling code here:
           list3.removeAll();
          genus= LoadGenus(list1.getSelectedItems());
-     
+
     }//GEN-LAST:event_list1MouseReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_formWindowOpened
 
     private void ch2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ch2StateChanged
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_ch2StateChanged
 
     private void ch1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ch1StateChanged
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_ch1StateChanged
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
         if((!ch1.isSelected()) && (!ch2.isSelected()))
         {
-            JOptionPane.showMessageDialog(this, "Please select one of the check boxes.");
-           
+            Utilities.MessageDialog(this, "Please select one of the check boxes.");
+
         }if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length==0))
         {
-            JOptionPane.showMessageDialog(this, "Please make any selections."); 
+            Utilities.MessageDialog(this, "Please make any selections.");
         }
-        else if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0)) 
+        else if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0))
         {
          LoadSpecies(list1.getSelectedItems(),genus);
          addFromList(list3);
          this.setVisible(false);
         }
-    
+
     }//GEN-LAST:event_jButton1MouseReleased
     private void countImage(){
-        if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0)) 
+        if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0))
         {
          LoadSpecies(list1.getSelectedItems(),genus);
          addFromList(list3);
-       
+
         }
     }
     private void addFromList(java.awt.List list)
@@ -389,7 +389,7 @@ public class SelectSpecies extends javax.swing.JDialog {
         String selectedSpecies = "";
         String cname="";
         String[] selections = list.getItems();
-          
+
         for(int i = 0; i < selections.length; i++){
            for(int j=0;j<gen.size();j++)
             {
@@ -413,11 +413,11 @@ public class SelectSpecies extends javax.swing.JDialog {
                                listSelections.add(selectedSpecies);//Adding selected taxa
                              }
                         }
-                      
+
                     }
              }
         }
-         
+
      }
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
         // TODO add your handling code here:
@@ -433,13 +433,13 @@ public class SelectSpecies extends javax.swing.JDialog {
         // TODO add your handling code here:
           if((!ch1.isSelected()) && (!ch2.isSelected()))
         {
-            JOptionPane.showMessageDialog(this, "Please select one of the check boxes.");
-           
+            Utilities.MessageDialog(this, "Please select one of the check boxes.");
+
         }if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length==0))
         {
-            JOptionPane.showMessageDialog(this, "Please make any selections."); 
+            Utilities.MessageDialog(this, "Please make any selections.");
         }
-        else if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0)) 
+        else if(((ch1.isSelected()) ||  (ch2.isSelected())) && (list1.getSelectedItems().length!=0))
         {
          LoadSpecies(list1.getSelectedItems(),genus);
          addFromList(list3);
@@ -452,13 +452,13 @@ public class SelectSpecies extends javax.swing.JDialog {
          bCancel = true;
          this.setVisible(false);
     }//GEN-LAST:event_jButton2KeyPressed
-  public static void addEscapeListener(final JDialog dialog) { 
-    ActionListener escListener = new ActionListener() { 
-        @Override       
-        public void actionPerformed(ActionEvent e) { 
-            
+  public static void addEscapeListener(final JDialog dialog) {
+    ActionListener escListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
             esc=true;
-            dialog.setVisible(false);        }    }; 
+            dialog.setVisible(false);        }    };
     dialog.getRootPane().registerKeyboardAction(escListener,KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),JComponent.WHEN_IN_FOCUSED_WINDOW);
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -475,5 +475,5 @@ public class SelectSpecies extends javax.swing.JDialog {
     private java.awt.List list3;
     private java.awt.List listSelections;
     // End of variables declaration//GEN-END:variables
-    
+
 }

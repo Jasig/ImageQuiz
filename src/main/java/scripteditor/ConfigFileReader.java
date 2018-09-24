@@ -19,6 +19,8 @@
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
+
+
  */
 package scripteditor;
 
@@ -27,14 +29,14 @@ import java.io.FileInputStream;
 
 
 public class ConfigFileReader {
-    
-    public static String getProjectName() 
+
+    public static String getProjectName()
     {
-       
-        String returnString = "Visual Learning – Plant Identification";
-        
+
+        String returnString = "Visual Learning"; //default string
+
         File file = new File(Configuration.ApplicationPath()+File.separator+"Graphics"+File.separator+"name.txt");
-        
+
         if(file.exists())
         {
             try {
@@ -42,10 +44,33 @@ public class ConfigFileReader {
                 FileInputStream fileInputStream = new FileInputStream(file);
                 dataArray = new byte[fileInputStream.available()];
                 fileInputStream.read(dataArray);
-                returnString = new String(dataArray);      
-            } 
+                returnString = new String(dataArray);
+            }
             catch (Exception ex) {
-                
+
+            }
+        }
+        return returnString;
+    }
+
+    public static String getWelcomeText()
+    {
+
+        String returnString = ""; //default string
+
+        File file = new File(Configuration.ApplicationPath()+File.separator+"Graphics"+File.separator+"welcome.txt");
+
+        if(file.exists())
+        {
+            try {
+                byte dataArray[];
+                FileInputStream fileInputStream = new FileInputStream(file);
+                dataArray = new byte[fileInputStream.available()];
+                fileInputStream.read(dataArray);
+                returnString = new String(dataArray);
+            }
+            catch (Exception ex) {
+
             }
         }
         return returnString;

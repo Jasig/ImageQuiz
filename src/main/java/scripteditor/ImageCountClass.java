@@ -88,7 +88,7 @@ public class ImageCountClass extends javax.swing.JDialog {
         } else if (list.size() > size) {
             // Randomly take away from the list
 
-            // #1 put list into 
+            // #1 put list into
 
             for (int i = 0; i < size; i++) {
                 randomnumber = myRandom.nextInt(list.size() - 1);
@@ -101,7 +101,7 @@ public class ImageCountClass extends javax.swing.JDialog {
             ArrayList<String> tempArray = new ArrayList<String>();
             String temp;
             if (size > allfiles.length) {
-                JOptionPane.showMessageDialog(this, "The max quantity for " + taxaset + " is " + allfiles.length + ". Please select a lower quantity.");
+                Utilities.MessageDialog(this, "The max quantity for " + taxaset + " is " + allfiles.length + ". Please select a lower quantity.");
                 return null;
             }
 
@@ -305,14 +305,14 @@ public class ImageCountClass extends javax.swing.JDialog {
 
             maxsize = getFileList(items.get(0)).length; // gets first element max
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            Utilities.MessageDialog(this, ex.getMessage());
             Logger.getLogger(ImageCountClass.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 1; i < items.size(); i++) {
             try {
                 currentsize = getFileList(items.get(i)).length;
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+                Utilities.MessageDialog(this, ex.getMessage());
                 Logger.getLogger(ImageCountClass.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (currentsize < maxsize) {
@@ -343,7 +343,7 @@ public class ImageCountClass extends javax.swing.JDialog {
 
                 tempPartNames = resizeList(temp, tempPartNames, maxsize);
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+                Utilities.MessageDialog(this, ex.getMessage());
                 Logger.getLogger(ImageCountClass.class.getName()).log(Level.SEVERE, null, ex);
             }
             tempfnames = new String[tempPartNames.size() + tempMainNames.size()];
@@ -390,7 +390,7 @@ public class ImageCountClass extends javax.swing.JDialog {
         temp = this.tfSelected.getText();
         //temp = temp.replace(" ", "");
         if (temp.compareTo("") == 0) {
-            JOptionPane.showMessageDialog(this, "Please select an item from the list.");
+            Utilities.MessageDialog(this, "Please select an item from the list.");
             return;
         }
         for (int i = 0; i < mFileNames.length; i++) {
@@ -408,7 +408,7 @@ public class ImageCountClass extends javax.swing.JDialog {
 
             tempPartNames = resizeList(selectedtext, tempPartNames, intQty);
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            Utilities.MessageDialog(this, ex.getMessage());
             Logger.getLogger(ImageCountClass.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (tempPartNames == null) {
@@ -449,12 +449,12 @@ public class ImageCountClass extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
-   
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -465,5 +465,5 @@ public class ImageCountClass extends javax.swing.JDialog {
     private javax.swing.JTextField tfQTY;
     private javax.swing.JTextField tfSelected;
     // End of variables declaration//GEN-END:variables
-    
+
 }

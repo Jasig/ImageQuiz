@@ -75,7 +75,7 @@ public boolean taxanull=false;
       this.searchLevel=Srchlevel;
       this.level=level;
       this.exist=exist;
-      
+
        // throw new UnsupportedOperationException("Not yt eimplemented");
     }
 
@@ -196,27 +196,27 @@ public boolean taxanull=false;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    
+
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
         // TODO add your handling code here:
         bt1=true;
-      
+
         mainF.mTaxa =null;
         mainF.taxonomicLevel=searchLevel;
- 
-        
+
+
         if(Items2!=null){
-           mainF.mTaxa=Items2;  
+           mainF.mTaxa=Items2;
         }
         //else{ //Commented by preethy on 19-06-2012
       //  mainF.mTaxa=Items;
        // }
-      
+
         mainF.group=false;
         this.setVisible(false);
-        prj.setVisible(false);  
+        prj.setVisible(false);
     }//GEN-LAST:event_jButton2MouseReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -225,13 +225,13 @@ public boolean taxanull=false;
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
         // TODO add your handling code here:
         this.setVisible(false);
-        
+
 }//GEN-LAST:event_jButton3MouseReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -242,8 +242,8 @@ public boolean taxanull=false;
         // TODO add your handling code here:
         if(mainF.mTaxa==null || mainF.mTaxa.length==0)
         {
-           list2.add("No taxa are currently selected."); 
-         
+           list2.add("No taxa are currently selected.");
+
            jButton2.setEnabled(false);
         }
         else
@@ -252,7 +252,7 @@ public boolean taxanull=false;
            list2.add(StudySet[i]);
         }
         }
- 
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
@@ -260,30 +260,30 @@ public boolean taxanull=false;
         if(mainF.mTaxa!=null){
        if(level.equals("Family"))
           {
-            JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of families and the selected \n taxa are at the " +searchLevel+ " level. Please select a different option.");            
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of families and the selected \n taxa are at the " +searchLevel+ " level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Common Name") ) ){
-            JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set because\n the current study set consists of species (selected by common name) and\n the selected taxa are at the generic level. Please select a different option.");  
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set because\n the current study set consists of species (selected by common name) and\n the selected taxa are at the generic level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Genus") ) ){
-            JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of genera and the selected \n taxa are at the species level. Please select a different option.");  
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of genera and the selected \n taxa are at the species level. Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Species")) && (searchLevel.equals("Genus")) ){
-            JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of species selected by \n their scientific names, and the selected taxa are at the genus level.\n Please select a different option.");  
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because the current study set consists of species selected by \n their scientific names, and the selected taxa are at the genus level.\n Please select a different option.");
           }else if((!searchLevel.equalsIgnoreCase(level)) && (level.equals("Species")) && (searchLevel.equals("Common Name")) ){
-            JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study because the current \nstudy set consists of species selected by their scientific names, and the selected taxa \nare at the species level, selected by common name. Please select a different option.");  
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study because the current \nstudy set consists of species selected by their scientific names, and the selected taxa \nare at the species level, selected by common name. Please select a different option.");
           }else if(exist){
-              JOptionPane.showMessageDialog(this,"We are sorry; you cannot add the selected taxa to the study set\n because these taxa are already selected.");
+              Utilities.MessageDialog(this, "We are sorry; you cannot add the selected taxa to the study set\n because these taxa are already selected.");
           }
       else
        {
-          mainF.group=false;   
+          mainF.group=false;
         bt1=true;
        int k=mainF.mTaxa.length;
-      
-       
+
+
         String [] mainItems = mainF.mTaxa;
         String [] temp = new String[k+Items.length];
        for(int i=0;i<mainItems.length;i++)
         {
-          
+
            temp[i] = mainItems[i];
         }
         for(int i=0;i<Items.length;i++)
@@ -292,9 +292,9 @@ public boolean taxanull=false;
             k++;
         }
         mainF.mTaxa = temp;
-     
+
         this.setVisible(false);
-        prj.setVisible(false); 
+        prj.setVisible(false);
        }
     }else{
              mainF.mTaxa =null;
@@ -303,32 +303,32 @@ public boolean taxanull=false;
              mainF.taxanull=true;
              mainF.group=false;
              this.setVisible(false);
-             prj.setVisible(false); 
-             
+             prj.setVisible(false);
+
         }
-        
+
     }//GEN-LAST:event_jButton1MouseReleased
     public void taxasel(String[] PrevTaxa,String taxal){
       levl=taxal;
        String tx="ts";
-       if(taxal.equals("Family")||(taxal.equals("Genus"))||(taxal.equals("Species")))  
+       if(taxal.equals("Family")||(taxal.equals("Genus"))||(taxal.equals("Species")))
         {
           for(int i=0;i<PrevTaxa.length;i++)   {
                prev=PrevTaxa;
                setItems(prev);
                list2.add(prev[i]);
-              this.setVisible(true); 
+              this.setVisible(true);
             }
          }
   }
  public void currentSet( String[] New) {
      try{
-         for(int i=0;i<New.length;i++){ 
+         for(int i=0;i<New.length;i++){
                setStudySet(New);
          }
        }catch(Exception e){}
    }
-     
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
