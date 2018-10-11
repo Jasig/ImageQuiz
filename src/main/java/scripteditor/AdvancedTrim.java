@@ -24,12 +24,22 @@
 package scripteditor;
 
 /**
- *
- * @author Administrator
+ * Utility class for trimming Strings.
  */
 public class AdvancedTrim {
 
-    public static String Trim(String temp) {
+    /**
+     * Returns a trimmed copy of a String containing (potentially among other characters) zero or
+     * more sequences of one or more space characters, such that those sequences instead each
+     * have exactly one space character.
+     *
+     * Returns unchanged copies of Strings containing no sequences of multiple space characters.
+     *
+     * @param temp non-null String
+     * @return a copy of temp, except trimming sequences of multiple spaces down to single spaces.
+     * @throws NullPointerException if temp is null
+     */
+    public static String trim(String temp) {
         String ret = "";
         int i = 0;
         while (i < temp.length()) {

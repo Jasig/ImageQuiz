@@ -104,7 +104,7 @@ public class ImageNamingQuiz {
                     break;
                 }
                 String completeAnswer = mSessionInfo.mImageCollection.getImageName();
-                completeAnswer = AdvancedTrim.Trim(completeAnswer);
+                completeAnswer = AdvancedTrim.trim(completeAnswer);
                 user_response = dlgQR.getResponse().trim();
                 actual_answer = getParsedName(completeAnswer.toLowerCase().trim());
 
